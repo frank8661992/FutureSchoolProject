@@ -36,19 +36,23 @@
         columns: [
           {
             align: 'center',
-            width: 60,
+            width: 120,
             render: (h, params) => {
               return h('span', {}, params.index + (this.page - 1) * this.limit + 1)
             }
           },
           {
             title: this.$i18n.t('m.User_User'),
-            align: 'center',
+            align: 'left',
             render: (h, params) => {
-              return h('a', {
+              return h('span', {
+                class: {
+                  'link-color': true
+                },
                 style: {
                   'display': 'inline-block',
-                  'max-width': '200px'
+                  'max-width': '200px',
+                  'color': '#5363ED'
                 },
                 on: {
                   click: () => {
@@ -64,22 +68,55 @@
           },
           {
             title: this.$i18n.t('m.mood'),
-            align: 'center',
-            key: 'mood'
+            align: 'left',
+            key: 'mood',
+            render: (h, params) => {
+              const moodText = params.row.mood || ''
+              if (moodText.length > 26) {
+                return h('Tooltip', {
+                  props: {
+                    'placement': 'top-start',
+                    'delay': '1000'
+                  }
+                }, [
+                  h('span', {
+                    class: {
+                      'text-ellipsis': true
+                    },
+                    style: {
+                      width: '395px'
+                    }
+                  }, moodText),
+                  h('div', {
+                    slot: 'content',
+                    style: {
+                      'white-space': 'normal'
+                    }
+                  }, moodText)
+                ])
+              }
+              return h('div', {
+                slot: 'content',
+                style: {
+                  'white-space': 'normal'
+                }
+              }, params.row.mood)
+            },
+            width: 400
           },
           {
             title: this.$i18n.t('m.AC'),
-            align: 'center',
+            align: 'left',
             key: 'accepted_number'
           },
           {
             title: this.$i18n.t('m.Total'),
-            align: 'center',
+            align: 'left',
             key: 'submission_number'
           },
           {
             title: this.$i18n.t('m.Rating'),
-            align: 'center',
+            align: 'left',
             render: (h, params) => {
               return h('span', utils.getACRate(params.row.accepted_number, params.row.submission_number))
             }
@@ -87,10 +124,17 @@
         ],
         options: {
           tooltip: {
-            trigger: 'axis'
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow'
+            }
           },
           legend: {
-            data: [this.$i18n.t('m.AC'), this.$i18n.t('m.Total')]
+            data: [this.$i18n.t('m.AC'), this.$i18n.t('m.Total')],
+            left: '0%',
+            itemWidth: 8,
+            itemHeight: 8,
+            itemGap: 20
           },
           grid: {
             x: '3%',
@@ -99,11 +143,33 @@
           toolbox: {
             show: true,
             feature: {
-              dataView: {show: true, readOnly: true},
-              magicType: {show: true, type: ['line', 'bar', 'stack']},
-              saveAsImage: {show: true}
+              mark: { show: true },
+              dataView: {
+                show: true,
+                readOnly: true,
+                buttonColor: '#5363ED'
+              },
+              magicType: {
+                show: true,
+                type: ['line', 'bar', 'stack'],
+                icon: {
+                  line: 'path://M56.888889 938.666667V56.888889h56.888889v853.333333h853.333333v56.888889H56.888889z" fill="#333333" p-id="2646"></path><path d="M193.422222 648.533333l-45.511111-45.511111L398.222222 358.4l199.111111 199.111111 347.022223-352.711111 45.511111 45.511111-392.533334 386.844445L398.222222 438.044444z'
+                }
+              },
+              restore: { show: true },
+              saveAsImage: {
+                show: true,
+                icon: 'path://M840.5 900.3h-657c-16.5 0-29.9 13.4-29.9 29.9s13.4 29.9 29.9 29.9h657.1c16.5 0 29.9-13.4 29.9-29.9-0.1-16.6-13.5-29.9-30-29.9zM631.5 123.7V541.8H763.1L512 769.9l-251.2-228h131.7V123.7h239m0-59.7h-239c-33 0-59.7 26.7-59.7 59.7v358.4H183.5c-26.6 0-39.9 32.2-21.1 51l328.5 298.2c5.8 5.8 13.5 8.7 21.1 8.7s15.3-2.9 21.1-8.7l328.5-298.2c18.8-18.8 5.5-51-21.1-51H691.2V123.7c0-33-26.7-59.7-59.7-59.7z'
+              }
             },
-            right: '10%'
+            right: '2%',
+            itemSize: 11,
+            emphasis: {
+              iconStyle: {
+                color: '#5363ED',
+                borderColor: '#5363ED'
+              }
+            }
           },
           calculable: true,
           xAxis: [
@@ -135,7 +201,12 @@
                 data: [
                   {type: 'max', name: 'max'}
                 ]
-              }
+              },
+              itemStyle: {
+                normal: {color: '#5363ED'}
+              },
+              barWidth: '30%',
+              barGap: '20%'
             },
             {
               name: this.$i18n.t('m.Total'),
@@ -145,7 +216,11 @@
                 data: [
                   {type: 'max', name: 'max'}
                 ]
-              }
+              },
+              itemStyle: {
+                normal: {color: '#43B0EA'}
+              },
+              barWidth: '30%'
             }
           ]
         }
@@ -162,6 +237,61 @@
         this.loadingTable = true
         api.getUserRank(offset, this.limit, RULE_TYPE.ACM).then(res => {
           this.loadingTable = false
+
+          // ady mock data
+          res.data.data = {results: [{
+            user: {username: 'ady1'},
+            accepted_number: 10,
+            submission_number: 15,
+            mood: '就算前进的路再苦，也比站在原地更接近幸福,就算前进的路再苦，也比站在原地更接近幸福就算前进的路再苦，也比站在原地更接近幸福'
+          }, {
+            user: {username: 'ady2'},
+            accepted_number: 20,
+            submission_number: 25,
+            mood: '就算前进的路再苦，也比站在原地更接近幸福'
+          }, {
+            user: {username: 'ady3'},
+            accepted_number: 30,
+            submission_number: 35,
+            mood: '就算前进的路再苦，也比站在原地更接近幸福,也比站在原地更123'
+          }, {
+            user: {username: 'ady4'},
+            accepted_number: 30,
+            submission_number: 35,
+            mood: '就算前进的路再苦，也比站在原地更接近幸福,也比站在原地123'
+          }, {
+            user: {username: 'ady5'},
+            accepted_number: 25,
+            submission_number: 35,
+            mood: '就算前进的路再苦，也比站在原地更接近幸福,也比站在原123'
+          }, {
+            user: {username: 'ady6'},
+            accepted_number: 10,
+            submission_number: 25
+          }, {
+            user: {username: 'ady7'},
+            accepted_number: 20,
+            submission_number: 35
+          }, {
+            user: {username: 'ady8'},
+            accepted_number: 40,
+            submission_number: 40
+          }, {
+            user: {username: 'ady9'},
+            accepted_number: 10,
+            submission_number: 25
+          }, {
+            user: {username: 'ady10'},
+            accepted_number: 20,
+            submission_number: 45
+          }, {
+            user: {username: 'ady11'},
+            accepted_number: 22,
+            submission_number: 42
+          }],
+            total: 11}
+          debugger
+  
           if (page === 1) {
             this.changeCharts(res.data.data.results.slice(0, 10))
           }
