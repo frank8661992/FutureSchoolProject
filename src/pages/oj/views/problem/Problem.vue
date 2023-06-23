@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-container">
+  <div class="flex-container main-content">
     <div id="problem-main">
       <!--problem main-->
       <Panel :padding="40" shadow>

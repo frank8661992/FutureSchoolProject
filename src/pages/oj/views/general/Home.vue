@@ -1,6 +1,5 @@
 <template>
-  <Row type="flex" justify="space-around">
-    <Col :span="22">
+  <div class="main-content">
     <panel shadow v-if="contests.length" class="contest">
       <div slot="title">
         <Button type="text"  class="contest-title" @click="goContest">{{contests[index].title}}</Button>
@@ -27,8 +26,7 @@
       </Carousel>
     </panel>
     <Announcements class="announcement"></Announcements>
-    </Col>
-  </Row>
+  </div>
 </template>
 
 <script>

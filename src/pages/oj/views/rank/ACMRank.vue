@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="main-content">
     <Panel>
       <div slot="title">{{$t('m.ACM_Ranklist')}}</div>
       <div class="echarts">
         <ECharts :options="options" ref="chart" auto-resize></ECharts>
       </div>
     </Panel>
-    <Table :data="dataRank" :columns="columns" :loading="loadingTable" class="table-wrapper" :border="false"></Table>
+    <Table :data="dataRank" :columns="columns" :loading="loadingTable" :border="false"></Table>
     <Pagination :total="total" :page-size.sync="limit" :current.sync="page"
                 @on-change="getRankData" show-sizer
                 @on-page-size-change="getRankData(1)"></Pagination>
@@ -319,8 +319,5 @@
   .echarts {
     width: 100%;
     height: 245px;
-  }
-  .table-wrapper{
-    margin-top: -20px;
   }
 </style>
