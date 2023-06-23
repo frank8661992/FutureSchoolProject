@@ -123,10 +123,9 @@
 <style lang="less" scoped>
   #header {
     min-width: 300px;
-    position: fixed;
     top: 0;
     left: 0;
-    height: 66px;
+    height: 60px;
     width: 100%;
     z-index: 1000;
     background-color: #fff;
@@ -145,8 +144,8 @@
       //上 右 下 左
       float: left;
       width:149px;
-      height:46px
-      // line-height: 60px;
+      height:46px;
+      line-height: 46px;
     }
 
     .drop-menu {
