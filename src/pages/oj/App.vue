@@ -83,7 +83,8 @@
     background-attachment:fixed; 
     background:url("../../assets/background.jpg");
     .content{
-    height:calc(100vh - 120px);
+      width: 100%;
+      height:calc(100vh - 120px);
       overflow: auto;
     }
   }
