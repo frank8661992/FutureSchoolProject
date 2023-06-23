@@ -1,18 +1,16 @@
 <template>
-  <Row type="flex" justify="space-around">
-    <Col :span="22">
-    <Panel :padding="10">
+  <div>
+    <Panel>
       <div slot="title">{{$t('m.ACM_Ranklist')}}</div>
       <div class="echarts">
         <ECharts :options="options" ref="chart" auto-resize></ECharts>
       </div>
     </Panel>
-    <Table :data="dataRank" :columns="columns" :loading="loadingTable" size="large"></Table>
+    <Table :data="dataRank" :columns="columns" :loading="loadingTable" class="table-wrapper" :border="false"></Table>
     <Pagination :total="total" :page-size.sync="limit" :current.sync="page"
                 @on-change="getRankData" show-sizer
                 @on-page-size-change="getRankData(1)"></Pagination>
-    </Col>
-  </Row>
+  </div>
 </template>
 
 <script>
@@ -29,14 +27,15 @@
     data () {
       return {
         page: 1,
-        limit: 30,
+        limit: 10,
         total: 0,
         loadingTable: false,
         dataRank: [],
+        mainColor: '#5363ED',
         columns: [
           {
             align: 'center',
-            width: 120,
+            width: 60,
             render: (h, params) => {
               return h('span', {}, params.index + (this.page - 1) * this.limit + 1)
             }
@@ -52,7 +51,7 @@
                 style: {
                   'display': 'inline-block',
                   'max-width': '200px',
-                  'color': '#5363ED'
+                  'color': this.mainColor
                 },
                 on: {
                   click: () => {
@@ -72,7 +71,7 @@
             key: 'mood',
             render: (h, params) => {
               const moodText = params.row.mood || ''
-              if (moodText.length > 26) {
+              if (moodText.length > 22) {
                 return h('Tooltip', {
                   props: {
                     'placement': 'top-start',
@@ -84,7 +83,7 @@
                       'text-ellipsis': true
                     },
                     style: {
-                      width: '395px'
+                      width: '290px'
                     }
                   }, moodText),
                   h('div', {
@@ -102,7 +101,7 @@
                 }
               }, params.row.mood)
             },
-            width: 400
+            width: 300
           },
           {
             title: this.$i18n.t('m.AC'),
@@ -147,7 +146,7 @@
               dataView: {
                 show: true,
                 readOnly: true,
-                buttonColor: '#5363ED'
+                buttonColor: this.mainColor
               },
               magicType: {
                 show: true,
@@ -166,8 +165,8 @@
             itemSize: 11,
             emphasis: {
               iconStyle: {
-                color: '#5363ED',
-                borderColor: '#5363ED'
+                color: this.mainColor,
+                borderColor: this.mainColor
               }
             }
           },
@@ -233,7 +232,10 @@
       getRankData (page) {
         let offset = (page - 1) * this.limit
         let bar = this.$refs.chart
-        bar.showLoading({maskColor: 'rgba(250, 250, 250, 0.8)'})
+        bar.showLoading({
+          maskColor: 'rgba(250, 250, 250, 0.8)',
+          color: this.mainColor
+        })
         this.loadingTable = true
         api.getUserRank(offset, this.limit, RULE_TYPE.ACM).then(res => {
           this.loadingTable = false
@@ -253,17 +255,17 @@
             user: {username: 'ady3'},
             accepted_number: 30,
             submission_number: 35,
-            mood: '就算前进的路再苦，也比站在原地更接近幸福,也比站在原地更123'
+            mood: '就算前进的路再苦，也比站在原地更接近幸福,也比'
           }, {
             user: {username: 'ady4'},
             accepted_number: 30,
             submission_number: 35,
-            mood: '就算前进的路再苦，也比站在原地更接近幸福,也比站在原地123'
+            mood: '就算前进的路再苦，也比站在原地更接近幸福,也比站'
           }, {
             user: {username: 'ady5'},
             accepted_number: 25,
             submission_number: 35,
-            mood: '就算前进的路再苦，也比站在原地更接近幸福,也比站在原123'
+            mood: '就算前进的路再苦，也比站在原地更接近幸福,也比站在'
           }, {
             user: {username: 'ady6'},
             accepted_number: 10,
@@ -284,13 +286,8 @@
             user: {username: 'ady10'},
             accepted_number: 20,
             submission_number: 45
-          }, {
-            user: {username: 'ady11'},
-            accepted_number: 22,
-            submission_number: 42
           }],
-            total: 11}
-          debugger
+            total: 20}
   
           if (page === 1) {
             this.changeCharts(res.data.data.results.slice(0, 10))
@@ -320,8 +317,10 @@
 
 <style scoped lang="less">
   .echarts {
-    margin: 0 auto;
-    width: 95%;
+    width: 100%;
     height: 245px;
+  }
+  .table-wrapper{
+    margin-top: -20px;
   }
 </style>
