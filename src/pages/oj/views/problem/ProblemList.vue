@@ -1,6 +1,6 @@
 <template>
-  <Row type="flex" :gutter="18">
-    <Col :span=19>
+  <div>
+    
     <Panel shadow>
       <div slot="title">{{$t('m.Problem_List')}}</div>
       <div slot="extra">
@@ -48,9 +48,9 @@
     <Pagination
       :total="total" :page-size.sync="query.limit" @on-change="pushRouter" @on-page-size-change="pushRouter" :current.sync="query.page" :show-sizer="true"></Pagination>
 
-    </Col>
+    
 
-    <Col :span="5">
+    <div>
     <Panel :padding="10">
       <div slot="title" class="taglist-title">{{$t('m.Tags')}}</div>
       <Button v-for="tag in tagList"
@@ -68,8 +68,8 @@
       </Button>
     </Panel>
     <Spin v-if="loadings.tag" fix size="large"></Spin>
-    </Col>
-  </Row>
+  </div>
+  </div>
 </template>
 
 <script>

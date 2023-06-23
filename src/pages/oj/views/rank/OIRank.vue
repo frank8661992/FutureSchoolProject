@@ -1,6 +1,5 @@
 <template>
-  <Row type="flex" justify="space-around">
-    <Col :span="22">
+  <div>
     <Panel :padding="10">
       <div slot="title">{{$t('m.OI_Ranklist')}}</div>
       <div class="echarts">
@@ -11,8 +10,7 @@
     <Pagination :total="total" :page-size.sync="limit" :current.sync="page"
                 @on-change="getRankData"
                 show-sizer @on-page-size-change="getRankData(1)"></Pagination>
-    </Col>
-  </Row>
+  </div>
 </template>
 
 <script>

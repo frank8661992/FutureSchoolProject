@@ -90,12 +90,18 @@
       display: flex;
       justify-content: center;
       .content{
+<<<<<<< Updated upstream
         background:#fff;
         width: 58%;
         min-width: 800px;
         padding: 24px 32px 0 32px;
+=======
+        width: 58%;
+        min-width: 640px;
+>>>>>>> Stashed changes
         height:calc(100vh - 120px);
         overflow: auto;
+        margin-top:20px;
       }
     }
   }

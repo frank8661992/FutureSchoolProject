@@ -1,6 +1,10 @@
 <template>
   <div>
+<<<<<<< Updated upstream
     <Panel>
+=======
+    <Panel :padding="10">
+>>>>>>> Stashed changes
       <div slot="title">{{$t('m.ACM_Ranklist')}}</div>
       <div class="echarts">
         <ECharts :options="options" ref="chart" auto-resize></ECharts>

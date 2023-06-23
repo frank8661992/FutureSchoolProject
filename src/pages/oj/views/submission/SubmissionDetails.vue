@@ -1,6 +1,5 @@
 <template>
-  <Row type="flex" justify="space-around">
-    <Col :span="20" id="status">
+  <div>
       <Alert :type="status.type" showIcon>
         <span class="title">{{$t('m.' + status.statusName.replace(/ /g, "_"))}}</span>
         <div slot="desc" class="content">
@@ -15,7 +14,7 @@
           </template>
         </div>
       </Alert>
-    </Col>
+    
 
     <!--后台返info就显示出来， 权限控制放后台 -->
     <Col v-if="submission.info && !isCE" :span="20">
@@ -37,7 +36,7 @@
         </Button>
       </div>
     </Col>
-  </Row>
+  </div>
 
 </template>
 

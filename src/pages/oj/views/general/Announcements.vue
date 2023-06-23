@@ -19,21 +19,9 @@
       <template v-if="listVisible">
         <ul class="announcements-container" key="list">
           <li v-for="announcement in announcements" :key="announcement.title">
-              <div class="title"><a class="entry" @click="goAnnouncement(announcement)">
-                {{announcement.title}}</a>
-            </div>
-          </li>
-
-          <li v-for="announcement in announcements" :key="announcement.title">
-            <!-- <div class="flex-container"> -->
-              
-              <div class="date">{{announcement.create_time | localtime }}</div>
-            <!-- </div> -->
-          </li>
-
-          <li v-for="announcement in announcements" :key="announcement.title">
-              
-              <div class="creator"> {{$t('m.By')}} {{announcement.created_by.username}}</div>
+            <div class="title"><a class="entry" @click="goAnnouncement(announcement)">{{announcement.title}}</a></div>
+            <div class="date">{{announcement.create_time | localtime }}</div>
+            <div class="creator"> {{$t('m.By')}} {{announcement.created_by.username}}</div>
           </li>
         </ul>
         <Pagination v-if="!isContest"
@@ -152,21 +140,19 @@
     margin-top: -10px;
     margin-bottom: 10px;
     li {
-      padding-top: 1px;
+      display: flex;
+      flex-direction: column;
       list-style: none;
-      padding-bottom: 15px;
-      // margin-left: 20px;
+      // padding-bottom: 15px;
       font-size: 16px;
-      // border-bottom: 1px solid rgba(187, 187, 187, 0.5);
       &:last-child {
         border-bottom: none;
       }
       .flex-container {
         .title {
-          // flex: 1 1;
-          float: left;
           text-align: left;
-          // padding-left: 10px;
+          // padding-bottom: 10px;
+          flex-grow: 2;
           a.entry {
             color: #495060;
             &:hover {
@@ -176,12 +162,14 @@
           }
         }
         .creator {
-          flex: left;
+          flex-grow: 1;
+
+          margin-top: 20px;
           // width: 200px;
           text-align: center;
         }
         .date {
-          flex: left;
+          flex-grow: 1;
           // width: 200px;
           text-align: center;
         }
