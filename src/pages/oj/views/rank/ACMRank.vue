@@ -76,7 +76,7 @@
                 return h('Tooltip', {
                   props: {
                     'placement': 'top-start',
-                    'delay': '1000'
+                    'delay': 1000
                   }
                 }, [
                   h('span', {
@@ -322,6 +322,6 @@
   .echarts {
     margin: 0 auto;
     width: 95%;
-    height: 400px;
+    height: 245px;
   }
 </style>

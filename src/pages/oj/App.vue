@@ -3,14 +3,16 @@
     <NavBar></NavBar>
     <div class="content-app">
       <transition name="fadeInUp" mode="out-in">
-        <router-view></router-view>
+        <div class="content">
+          <router-view></router-view>
+        </div>
       </transition>
-      <div class="footer">
-        <p v-html="website.website_footer"></p>
-        <p>Powered by <a href="https://github.com/QingdaoU/OnlineJudge">OnlineJudge</a>
-          <span v-if="version">&nbsp; Version: {{ version }}</span>
-        </p>
-      </div>
+    </div>
+    <div class="footer">
+      <p v-html="website.website_footer"></p>
+      <p>Powered by <a href="https://github.com/QingdaoU/OnlineJudge">OnlineJudge</a>
+        <span v-if="version">&nbsp; Version: {{ version }}</span>
+      </p>
     </div>
     <BackTop></BackTop>
   </div>
@@ -72,26 +74,25 @@
     }
   }
 
-
-  @media screen and (max-width: 1200px) {
   .content-app {
-    margin-top: 160px;
     padding: 0 2%;
+    height:calc(100vh - 120px);
+    background-size:100% 100%;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-attachment:fixed; 
+    background:url("../../assets/background.jpg");
+    .content{
+    height:calc(100vh - 120px);
+      overflow: auto;
+    }
   }
-}
-
-@media screen and (min-width: 1200px) {
-  .content-app {
-    margin-top: 80px;
-    padding: 0 2%;
-  }
-}
 
   .footer {
-    margin-top: 20px;
-    margin-bottom: 10px;
+    height: 60px;
     text-align: center;
     font-size: small;
+    background: #FFFFFF;
   }
 
   .fadeInUp-enter-active {
