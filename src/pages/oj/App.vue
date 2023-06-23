@@ -90,7 +90,10 @@
       display: flex;
       justify-content: center;
       .content{
-        width: 1100px;
+        background:#fff;
+        width: 58%;
+        min-width: 800px;
+        padding: 24px 32px 0 32px;
         height:calc(100vh - 120px);
         overflow: auto;
       }

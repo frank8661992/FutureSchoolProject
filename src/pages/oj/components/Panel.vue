@@ -29,12 +29,12 @@
       disHover: {
         required: false,
         type: Boolean,
-        default: false
+        default: true
       },
       bordered: {
         required: false,
         type: Boolean,
-        default: true
+        default: false
       }
     }
   }
