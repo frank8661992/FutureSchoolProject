@@ -3,8 +3,10 @@
     <NavBar></NavBar>
     <div class="content-app">
       <transition name="fadeInUp" mode="out-in">
-        <div class="content">
-          <router-view></router-view>
+        <div class=content-wrapper>
+          <div class="content">
+            <router-view></router-view>
+          </div>
         </div>
       </transition>
     </div>
@@ -82,10 +84,16 @@
     background-repeat: no-repeat;
     background-attachment:fixed; 
     background:url("../../assets/background.jpg");
-    .content{
+    margin: 0 auto;
+    .content-wrapper{
       width: 100%;
-      height:calc(100vh - 120px);
-      overflow: auto;
+      display: flex;
+      justify-content: center;
+      .content{
+        width: 1100px;
+        height:calc(100vh - 120px);
+        overflow: auto;
+      }
     }
   }
 
@@ -99,6 +107,5 @@
   .fadeInUp-enter-active {
     animation: fadeInUp .8s;
   }
-
 
 </style>
