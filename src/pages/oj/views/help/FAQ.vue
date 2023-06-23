@@ -1,4 +1,8 @@
 <template>
+  <div class="setFAQdiv">
+
+   <div class="FAQtopTapDiv"></div>
+
   <panel>
     <div slot="title">{{$t('m.Frequently_Asked_Questions')}}</div>
     <div class="content markdown-body">
@@ -30,12 +34,32 @@
       </ul>
     </div>
   </panel>
+  <!-- 这个div用于在内容顶部留出间距 -->
+  <div class="FAQbottomTapDiv"></div>
+</div>
+
 </template>
 
 <script>
 </script>
 
 <style lang="less" scoped>
+  .setFAQdiv {
+    display: block;
+    margin:auto;
+    width : 58%;
+  }
+
+  .FAQtopTapDiv {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  .FAQbottomTapDiv {
+    display: flex;
+    margin-top: 17px;
+  }
+
   .content {
     font-size: 16px;
     margin: 0 50px 40px 50px;

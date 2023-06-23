@@ -1,7 +1,9 @@
 <template>
   <div id="header">
     <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
-      <div class="logo"><span>{{website.website_name}}</span></div>
+      <div >
+      <img src="../../../assets/futureschool_logo.png" alt="" class="logo">
+      </div>
       <Menu-item name="/">
         <Icon type="home"></Icon>
         {{$t('m.Home')}}
@@ -124,21 +126,27 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: auto;
+    height: 66px;
     width: 100%;
     z-index: 1000;
     background-color: #fff;
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
     .oj-menu {
+      height: 66px;
       background: #fdfdfd;
     }
 
     .logo {
-      margin-left: 2%;
-      margin-right: 2%;
-      font-size: 20px;
+      margin-left: 21.4%;
+      margin-right: 14.5%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      // margin: 1% 10% 0 10%;
+      //上 右 下 左
       float: left;
-      line-height: 60px;
+      width:149px;
+      height:46px
+      // line-height: 60px;
     }
 
     .drop-menu {

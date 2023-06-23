@@ -52,10 +52,6 @@
     top: 10px;
   }
 }
-body {
-  background: #f8f8f9;
-}
-
 #app-loader {
   position: absolute;
   left: 50%;

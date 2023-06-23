@@ -1,5 +1,8 @@
 <template>
   <div>
+    <!-- 这个div用于在内容顶部留出间距 -->
+    <div class="topTapDiv"></div>
+    
     <panel class="container">
       <div slot="title">{{$t('m.Compiler')}} & {{$t('m.Judger')}}</div>
       <div class="content markdown-body">
@@ -33,6 +36,9 @@
         </ul>
       </div>
     </panel>
+    <!-- 这个div用于在内容底部流出间距 -->
+    <div class="bottomTapDiv"></div>
+
 
   </div>
 </template>
@@ -57,6 +63,15 @@
 </script>
 
 <style scoped lang="less">
+  .topTapDiv {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+.bottomTapDiv {
+    display: flex;
+    margin-bottom: 10px;
+}
   .container {
     margin-bottom: 20px;
 

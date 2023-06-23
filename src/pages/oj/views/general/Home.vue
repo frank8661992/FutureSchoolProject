@@ -82,7 +82,8 @@
     }
   }
 
-  .announcement {
-    margin-top: 20px;
-  }
+  //这里announcement的样式先屏蔽 放在home problems contest等模块统一调整
+  // .announcement {
+  //   margin-top: 20px;
+  // }
 </style>
