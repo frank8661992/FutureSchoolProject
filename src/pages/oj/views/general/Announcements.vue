@@ -1,26 +1,39 @@
 <template>
-  <Panel shadow :padding="10">
-    <div slot="title">
-      {{title}}
+  <Panel shadow :padding="1">
+    
+    <div >
+      <img src="../../../../assets/Design.png" alt="" class="designimg">
     </div>
-    <div slot="extra">
+    
+
+    <!-- <div slot="extra" class="refreshbtn">
       <Button v-if="listVisible" type="info" @click="init" :loading="btnLoading">{{$t('m.Refresh')}}</Button>
       <Button v-else type="ghost" icon="ios-undo" @click="goBack">{{$t('m.Back')}}</Button>
-    </div>
+    </div> -->
 
     <transition-group name="announcement-animate" mode="in-out">
       <div class="no-announcement" v-if="!announcements.length" key="no-announcement">
         <p>{{$t('m.No_Announcements')}}</p>
       </div>
+
       <template v-if="listVisible">
         <ul class="announcements-container" key="list">
           <li v-for="announcement in announcements" :key="announcement.title">
-            <div class="flex-container">
               <div class="title"><a class="entry" @click="goAnnouncement(announcement)">
-                {{announcement.title}}</a></div>
-              <div class="date">{{announcement.create_time | localtime }}</div>
-              <div class="creator"> {{$t('m.By')}} {{announcement.created_by.username}}</div>
+                {{announcement.title}}</a>
             </div>
+          </li>
+
+          <li v-for="announcement in announcements" :key="announcement.title">
+            <!-- <div class="flex-container"> -->
+              
+              <div class="date">{{announcement.create_time | localtime }}</div>
+            <!-- </div> -->
+          </li>
+
+          <li v-for="announcement in announcements" :key="announcement.title">
+              
+              <div class="creator"> {{$t('m.By')}} {{announcement.created_by.username}}</div>
           </li>
         </ul>
         <Pagination v-if="!isContest"
@@ -112,24 +125,48 @@
 </script>
 
 <style scoped lang="less">
+  .designimg {
+    // display: flex;
+    float: left;
+    width: 120px;
+    height: 87px;
+    margin-left: 40px;
+    margin-top: 1px;
+
+  }
+
+  .refreshbtn{
+    display: flex;
+  }
+  .announcement {
+    height: 154px;
+  }
+
+  
+
+
+
+
+
   .announcements-container {
     margin-top: -10px;
     margin-bottom: 10px;
     li {
-      padding-top: 15px;
+      padding-top: 1px;
       list-style: none;
       padding-bottom: 15px;
-      margin-left: 20px;
+      // margin-left: 20px;
       font-size: 16px;
-      border-bottom: 1px solid rgba(187, 187, 187, 0.5);
+      // border-bottom: 1px solid rgba(187, 187, 187, 0.5);
       &:last-child {
         border-bottom: none;
       }
       .flex-container {
         .title {
-          flex: 1 1;
+          // flex: 1 1;
+          float: left;
           text-align: left;
-          padding-left: 10px;
+          // padding-left: 10px;
           a.entry {
             color: #495060;
             &:hover {
@@ -139,13 +176,13 @@
           }
         }
         .creator {
-          flex: none;
-          width: 200px;
+          flex: left;
+          // width: 200px;
           text-align: center;
         }
         .date {
-          flex: none;
-          width: 200px;
+          flex: left;
+          // width: 200px;
           text-align: center;
         }
       }
