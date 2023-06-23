@@ -147,7 +147,7 @@
 
     .logo {
       margin-left: 21.4%;
-      margin-right: 10%;
+      margin-right: 14.5%;
       margin-top: 10px;
       margin-bottom: 10px;
       // margin: 1% 10% 0 10%;
