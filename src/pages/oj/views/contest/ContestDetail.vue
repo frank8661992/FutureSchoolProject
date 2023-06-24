@@ -1,6 +1,6 @@
 <template>
   <div class="flex-container">
-    <div id="contest-main">
+    <div id="contest-main" class="main-content">
       <!--children-->
       <transition name="fadeInUp">
         <router-view></router-view>
@@ -9,7 +9,7 @@
       <div class="flex-container" v-if="route_name === 'contest-details'">
         <template>
           <div id="contest-desc">
-            <Panel :padding="20" shadow>
+            <Panel :padding="0">
               <div slot="title">
                 {{contest.title}}
               </div>
@@ -26,7 +26,7 @@
                 <Button type="info" @click="checkPassword">Enter</Button>
               </div>
             </Panel>
-            <Table :columns="columns" :data="contest_table" disabled-hover style="margin-bottom: 40px;"></Table>
+            <Table :columns="columns" :data="contest_table" disabled-hover></Table>
           </div>
         </template>
       </div>
@@ -208,6 +208,7 @@
     #contest-main {
       flex: 1 1;
       width: 0;
+      padding-bottom: 24px;
       #contest-desc {
         flex: auto;
       }

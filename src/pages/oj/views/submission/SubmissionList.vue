@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-container main-content">
+  <div class="flex-container" :class="{'main-content': !isNested}">
     <div id="main">
       <Panel shadow>
         <div slot="title">{{title}}</div>
@@ -321,6 +321,12 @@
       },
       rejudgeColumnVisible () {
         return !this.contestID && this.user.admin_type === USER_TYPE.SUPER_ADMIN
+      },
+      isNested () {
+        if (this.$route.path.indexOf('/contest/') > -1) {
+          return true
+        }
+        return false
       }
     },
     watch: {

@@ -1,11 +1,11 @@
 <template>
-  <Row type="flex">
-    <Col :span="24">
+  <div class="main-content">
     <Panel id="contest-card" shadow>
       <div slot="title">{{query.rule_type === '' ? this.$i18n.t('m.All') : query.rule_type}} {{$t('m.Contests')}}</div>
       <div slot="extra">
         <ul class="filter">
-          <li>
+          <!-- 只有acm赛制，去掉赛制筛选 -->
+          <!-- <li>
             <Dropdown @on-click="onRuleChange">
               <span>{{query.rule_type === '' ? this.$i18n.t('m.Rule') : this.$i18n.t('m.' + query.rule_type)}}
                 <Icon type="arrow-down-b"></Icon>
@@ -16,7 +16,7 @@
                 <Dropdown-item name="ACM">{{$t('m.ACM')}}</Dropdown-item>
               </Dropdown-menu>
             </Dropdown>
-          </li>
+          </li> -->
           <li>
             <Dropdown @on-click="onStatusChange">
               <span>{{query.status === '' ? this.$i18n.t('m.Status') : this.$i18n.t('m.' + CONTEST_STATUS_REVERSE[query.status].name.replace(/ /g,"_"))}}
@@ -34,14 +34,22 @@
             <Input id="keyword" @on-enter="changeRoute" @on-click="changeRoute" v-model="query.keyword"
                    icon="ios-search-strong" placeholder="Keyword"/>
           </li>
+          <li>
+              <Button type="primary" @click="changeRoute" shape="circle" >
+                <Icon type="search"></Icon>
+                {{$t('m.Search')}}
+              </Button>
+          </li>
         </ul>
       </div>
       <p id="no-contest" v-if="contests.length == 0">{{$t('m.No_contest')}}</p>
       <ol id="contest-list">
         <li v-for="contest in contests" :key="contest.title">
           <Row type="flex" justify="space-between" align="middle">
-            <img class="trophy" src="../../../../assets/Cup.png"/>
-            <Col :span="18" class="contest-main">
+            <Col class="image-wrapper">
+              <img class="trophy" src="../../../../assets/notice.png"/>
+            </Col>
+            <Col class="contest-main">
             <p class="title">
               <a class="entry" @click.stop="goContest(contest)">
                 {{contest.title}}
@@ -50,33 +58,31 @@
                 <Icon type="ios-locked-outline" size="20"></Icon>
               </template>
             </p>
-            <ul class="detail">
-              <li>
-                <Icon type="calendar" color="#3091f2"></Icon>
+            <p class="date-time">
                 {{contest.start_time | localtime('YYYY-M-D HH:mm') }}
-              </li>
-              <li>
-                <Icon type="android-time" color="#3091f2"></Icon>
-                {{getDuration(contest.start_time, contest.end_time)}}
-              </li>
-              <li>
-                <Button size="small" shape="circle" @click="onRuleChange(contest.rule_type)">
-                  {{contest.rule_type}}
-                </Button>
-              </li>
-            </ul>
+            </p>
+            <div class="detail">
+              <span v-if="contest.created_by && contest.created_by.username" class="creator">
+                {{$t('m.Creator')}}:{{contest.created_by.username}}
+              </span>
+              <span  class="rule-tag">{{contest.rule_type}}</span>
+            </div>
             </Col>
-            <Col :span="4" style="text-align: center">
-            <Tag type="dot" :color="CONTEST_STATUS_REVERSE[contest.status].color">{{$t('m.' + CONTEST_STATUS_REVERSE[contest.status].name.replace(/ /g, "_"))}}</Tag>
+            <Col class="status-wrapper" style="text-align: center">
+              <Tag  
+                type="dot" 
+                :color="CONTEST_STATUS_REVERSE[contest.status].color"
+                class="status-tag"
+              >
+                {{$t('m.' + CONTEST_STATUS_REVERSE[contest.status].name.replace(/ /g, "_"))}}
+              </Tag>
             </Col>
           </Row>
         </li>
       </ol>
     </Panel>
     <Pagination :total="total" :page-size.sync="limit" @on-change="changeRoute" :current.sync="page" :show-sizer="true" @on-page-size-change="changeRoute"></Pagination>
-    </Col>
-  </Row>
-
+  </div>
 </template>
 
 <script>
@@ -186,11 +192,8 @@
   }
 </script>
 <style lang="less" scoped>
+  @color-theme: #5363ED;
   #contest-card {
-    #keyword {
-      width: 80%;
-      margin-right: 30px;
-    }
     #no-contest {
       text-align: center;
       font-size: 16px;
@@ -198,32 +201,62 @@
     }
     #contest-list {
       > li {
-        padding: 20px;
+        padding: 30px 0;
         border-bottom: 1px solid rgba(187, 187, 187, 0.5);
         list-style: none;
 
-        .trophy {
-          height: 40px;
-          margin-left: 10px;
-          margin-right: -20px;
+        .image-wrapper{
+          padding-right: 32px;
+          .trophy {
+            height: 87px;
+            width: auto;
+          }
         }
         .contest-main {
+          flex:1;
           .title {
-            font-size: 18px;
+            font-size: 20px;
+            height: 28px;
+            line-height: 28px;
             a.entry {
-              color: #495060;
+              color: #000;
               &:hover {
-                color: #2d8cf0;
-                border-bottom: 1px solid #2d8cf0;
+                color: @color-theme;
               }
             }
           }
-          li {
-            display: inline-block;
-            padding: 10px 0 0 10px;
-            &:first-child {
-              padding: 10px 0 0 0;
+          .date-time{
+            color: #999999;
+            font-size: 14px;
+            height: 20px;
+            line-height: 20px;
+          }
+          .detail {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            .creator{
+              color: #000;
+              font-size: 16px;
+              height: 22px;
+              margin-right: 10px;
+              line-height: 22px;
             }
+            .rule-tag{
+              font-size: 12px;
+              padding: 1px 10px;
+              background: #f3f3f3;
+              border-radius: 10px;
+              line-height: 16px;
+              border: 1px solid #DDDDDD;
+            }
+          }
+        }
+        .status-wrapper{
+          padding-left: 32px;
+          .status-tag{
+            cursor:default;
+            width: 120px;
           }
         }
       }
