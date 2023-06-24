@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-container">
+  <div class="flex-container main-content">
     <div id="main">
       <Panel shadow>
         <div slot="title">{{title}}</div>
@@ -31,7 +31,7 @@
             </li>
 
             <li>
-              <Button type="info" icon="refresh" @click="getSubmissions">{{$t('m.Refresh')}}</Button>
+              <Button type="primary" icon="search" @click="getSubmissions">{{$t('m.Search')}}</Button>
             </li>
           </ul>
         </div>
@@ -62,9 +62,11 @@
           result: '',
           username: ''
         },
+        mainColor: '#5363ED',
         columns: [
           {
             title: this.$i18n.t('m.When'),
+            width: 150,
             align: 'center',
             render: (h, params) => {
               return h('span', time.utcToLocal(params.row.create_time))
@@ -72,12 +74,15 @@
           },
           {
             title: this.$i18n.t('m.ID'),
+            width: 120,
             align: 'center',
             render: (h, params) => {
               if (params.row.show_link) {
                 return h('span', {
+                  class: {
+                    'link-color': true
+                  },
                   style: {
-                    color: '#57a3f3',
                     cursor: 'pointer'
                   },
                   on: {
@@ -93,6 +98,7 @@
           },
           {
             title: this.$i18n.t('m.Status'),
+            width: 110,
             align: 'center',
             render: (h, params) => {
               return h('Tag', {
@@ -108,8 +114,10 @@
             render: (h, params) => {
               return h('span',
                 {
+                  class: {
+                    'link-color': true
+                  },
                   style: {
-                    color: '#57a3f3',
                     cursor: 'pointer'
                   },
                   on: {
@@ -152,9 +160,13 @@
             title: this.$i18n.t('m.Author'),
             align: 'center',
             render: (h, params) => {
-              return h('a', {
+              return h('span', {
+                class: {
+                  'link-color': true,
+                  'text-ellipsis': true
+
+                },
                 style: {
-                  'display': 'inline-block',
                   'max-width': '150px'
                 },
                 on: {
@@ -173,7 +185,7 @@
         loadingTable: false,
         submissions: [],
         total: 30,
-        limit: 12,
+        limit: 10,
         page: 1,
         contestID: '',
         problemID: '',
@@ -254,7 +266,7 @@
           title: this.$i18n.t('m.Option'),
           fixed: 'right',
           align: 'center',
-          width: 90,
+          width: 100,
           render: (h, params) => {
             return h('Button', {
               props: {

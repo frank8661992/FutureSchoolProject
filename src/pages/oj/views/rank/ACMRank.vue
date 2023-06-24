@@ -51,7 +51,6 @@
                 style: {
                   'display': 'inline-block',
                   'max-width': '200px',
-                  'color': this.mainColor,
                   cursor: 'pointer'
                 },
                 on: {

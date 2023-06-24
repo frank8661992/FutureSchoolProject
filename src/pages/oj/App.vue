@@ -77,7 +77,6 @@
   }
 
   .content-app {
-    height:calc(100vh - 120px);
     background-size:100% 100%;
     background-size:cover;
     background-repeat: no-repeat;
@@ -89,7 +88,8 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      height:calc(100vh - 120px);
+      height:calc(100vh - 140px);
+      margin-top: 20px;
       overflow: auto;
       .content{
         width: 58%;

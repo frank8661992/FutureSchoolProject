@@ -61,4 +61,31 @@ table {
 }
 .ivu-input{
   border-radius: 30px;
+  &:hover {
+    border-color: @color-theme;
+}
+}
+.ivu-btn{
+  &:hover{
+    color: @color-theme;
+    background-color: #fff ;
+    border-color: @color-theme;
+  }
+  &.ivu-btn-primary{
+    color: #fff;
+    background-color: @color-theme;
+    border-color: @color-theme;
+    &:hover {
+      color: #fff;
+      background-color: @color-theme;
+      border-color: @color-theme;
+    }
+  }
+}
+.ivu-menu-light.ivu-menu-horizontal .ivu-menu-item-active,
+.ivu-menu-light.ivu-menu-horizontal .ivu-menu-item:hover,
+.ivu-menu-light.ivu-menu-horizontal .ivu-menu-submenu-active, 
+.ivu-menu-light.ivu-menu-horizontal .ivu-menu-submenu:hover {
+  color: @color-theme;
+  border-bottom: 2px solid @color-theme;;
 }
