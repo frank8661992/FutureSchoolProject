@@ -5,19 +5,15 @@
       <img src="../../../assets/futureschool_logo.png" alt="" class="logo">
       </div>
       <Menu-item name="/">
-        <Icon type="home"></Icon>
         {{$t('m.Home')}}
       </Menu-item>
       <Menu-item name="/problem">
-        <Icon type="ios-keypad"></Icon>
         {{$t('m.NavProblems')}}
       </Menu-item>
       <Menu-item name="/contest">
-        <Icon type="trophy"></Icon>
         {{$t('m.Contests')}}
       </Menu-item>
       <Menu-item name="/status">
-        <Icon type="ios-pulse-strong"></Icon>
         {{$t('m.NavStatus')}}
       </Menu-item>
       <Menu-item name="/acm-rank">
@@ -25,7 +21,6 @@
       </Menu-item>
       <Submenu name="about">
         <template slot="title">
-          <Icon type="information-circled"></Icon>
           {{$t('m.About')}}
         </template>
         <Menu-item name="/about">

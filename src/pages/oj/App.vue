@@ -90,6 +90,7 @@
       justify-content: center;
       height:calc(100vh - 140px);
       margin-top: 20px;
+      margin-bottom:10px;
       overflow: auto;
       .content{
         width: 58%;

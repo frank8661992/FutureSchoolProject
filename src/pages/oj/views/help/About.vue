@@ -1,8 +1,8 @@
 <template>
-  <div class="showFrame">
+  <div>
     <panel class="container  main-content">
       <div slot="title">{{$t('m.Compiler')}} & {{$t('m.Judger')}}</div>
-      <div class="about-content markdown-body">
+      <div class="compiler-content markdown-body">
         <ul>
           <li v-for="lang in languages">
             <p class="langTitleNameDiv">{{lang.name}} ( {{lang.description}} )</p>
@@ -12,9 +12,9 @@
       </div>
     </panel>
 
-    <panel :padding="15" class="container  main-content">
-      <div slot="title" class="resultExpTitleDiv">{{$t('m.Result_Explanation')}}</div>
-      <div class="content">
+    <panel class="container  main-content">
+      <div slot="title">{{$t('m.Result_Explanation')}}</div>
+      <div class="result-content">
         <ul>
           <li><b>{{$t('m.Pending')}} & {{$t('m.Judging')}}</b>: <b class="resultExpContentDiv">{{$t('m.Pending_Judging_Description')}}</b></li>
           <li><b>{{$t('m.Compile_Error')}}</b>: <b class="resultExpContentDiv">{{$t('m.Compile_Error_Description')}}</b></li>
@@ -55,38 +55,49 @@
 </script>
 
 <style scoped lang="less">
-  .showFrame {
-    padding-bottom: 10px;
-  }
+  
   .container {
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     .markdown-body{
-      // width: 90%;
       padding-bottom: 10px;
       color: blue;
 
     }
-    
-
     .langTitleNameDiv {
        color:black;
     }
-    .resultExpTitleDiv {
-      font-size: 20px;
-      text-align: left;
-      padding-top:30px;
-      padding-left:40px;
-      line-height: 0;
-
-    }
+    
     .resultExpContentDiv {
       color: black;
 
     }
-    .about-content {
+    .compiler-content {
       font-size: 15px;
+      margin-left:18px;
       > ul {
         list-style: disc;
+        pre {
+          background: rgba(83,99,237,0.06);
+        }
+
+        li {
+          line-height: 2;
+          color: blue;
+
+          .title {
+            font-weight: 500;
+          }
+        }
+      }
+    }
+
+    .result-content {
+      font-size: 15px;
+      margin-left:36px;
+      
+      > ul {
+        list-style: disc;
+        padding-bottom: 40px;
 
         li {
           line-height: 2;
