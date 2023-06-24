@@ -131,15 +131,12 @@
     background-color: #fff;
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
     .oj-menu {
-      height: 66px;
       background: #fdfdfd;
     }
 
     .logo {
       margin-left: 21.4%;
       margin-right: 14.5%;
-      margin-top: 10px;
-      margin-bottom: 10px;
       // margin: 1% 10% 0 10%;
       //上 右 下 左
       float: left;
