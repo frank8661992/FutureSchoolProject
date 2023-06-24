@@ -320,5 +320,6 @@
   .echarts {
     width: 100%;
     height: 245px;
+    margin-top: -10px;
   }
 </style>

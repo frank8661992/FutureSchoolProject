@@ -77,7 +77,6 @@
   }
 
   .content-app {
-    padding: 0 2%;
     height:calc(100vh - 120px);
     background-size:100% 100%;
     background-size:cover;
@@ -85,6 +84,7 @@
     background-attachment:fixed; 
     background:url("../../assets/background.jpg");
     margin: 0 auto;
+    overflow-x:auto;
     .content-wrapper{
       width: 100%;
       display: flex;
@@ -93,7 +93,7 @@
       overflow: auto;
       .content{
         width: 58%;
-        min-width: 800px;
+        min-width: 1100px;
         height: 100%;
       }
     }

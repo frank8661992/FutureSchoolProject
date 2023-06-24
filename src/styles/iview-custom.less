@@ -22,11 +22,11 @@ table {
   border-bottom-color: #dddddd;
   // height: 48px;
   .link-color{
-    color: #5363ED;
+    color: @color-theme
   }
 }
 .ivu-table-row-hover td{
-  background-color: #5363ED !important;
+  background-color: @color-theme !important;
   color: #fff;
   .link-color{
     color: #fff !important;
@@ -54,4 +54,11 @@ table {
 }
 .ivu-modal-body {
   padding: 18px;
+}
+.ivu-switch-checked{
+  background-color: @color-theme;
+  border-color: @color-theme;
+}
+.ivu-input{
+  border-radius: 30px;
 }
