@@ -33,7 +33,11 @@
                     icon="ios-search-strong"/>
             </li>
             <li>
-              <Button type="info" @click="onReset" shape="circle" class="btn-class">
+              <Button type="primary" @click="filterByKeyword" shape="circle" >
+                <Icon type="search"></Icon>
+                {{$t('m.Search')}}
+              </Button>
+              <Button @click="onReset" shape="circle" >
                 <Icon type="refresh"></Icon>
                 {{$t('m.Reset')}}
               </Button>
@@ -60,12 +64,9 @@
         <div slot="title">{{$t('m.Tags')}}</div>
         <Button v-for="tag in tagList"
                 :key="tag.name"
-                @click="filterByTag(tag.name)"
-                type="ghost"
-                :disabled="query.tag === tag.name"
-                shape="circle"
-                class="tag-btn">{{tag.name}}
-        </Button>
+                class="tag-btn" 
+                :class="{'tag-btn-checked':checkedMap[tag.id]}"
+                @click="filterByTag(tag)">{{tag.name}}</Button>
 
         <Button long id="pick-one" @click="pickone">
           <Icon type="shuffle"></Icon>
@@ -94,6 +95,7 @@
     data () {
       return {
         tagList: [],
+        checkedMap: {},
         problemTableColumns: [
           {
             title: '#',
@@ -216,14 +218,32 @@
       },
       getTagList () {
         api.getProblemTagList().then(res => {
-          this.tagList = res.data.data
+          const list = res.data.data
+          this.tagList = list
+          // 初始化标签选中状态
+          const queryTagName = this.query.tag
+          list.forEach(item => {
+            if (item.name === queryTagName) {
+              this.checkedMap[item.id] = true
+            } else {
+              this.checkedMap[item.id] = false
+            }
+          })
           this.loadings.tag = false
         }, res => {
           this.loadings.tag = false
         })
       },
-      filterByTag (tagName) {
-        this.query.tag = tagName
+      filterByTag (tagInfo) {
+        const {id: tagId, name: tagName} = tagInfo
+        this.checkedMap = {}
+        if (this.query.tag === tagName) {
+          this.checkedMap[tagId] = false
+          this.query.tag = ''
+        } else {
+          this.checkedMap[tagId] = true
+          this.query.tag = tagName
+        }
         this.query.page = 1
         this.pushRouter()
       },
@@ -287,9 +307,23 @@
 </script>
 
 <style scoped lang="less">
+  @color-theme: #5363ED;
   .tag-btn {
     margin-right: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    border-radius: 15px;
+    font-size: 10px !important;
+    &.tag-btn-checked{
+      background:@color-theme;
+      border: 1px solid @color-theme;
+      color: #fff;
+      &:focus{
+        color: #fff !important;
+      }
+    }
+    &:focus{
+      color: @color-theme;
+    }
   }
 
   #pick-one {

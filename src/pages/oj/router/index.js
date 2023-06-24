@@ -6,6 +6,10 @@ import {STORAGE_KEY} from '@/utils/constants'
 import {sync} from 'vuex-router-sync'
 import {types, default as store} from '../../../store'
 
+// 兼容Avoided redundant navigation to current location
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push (location) { return originalPush.call(this, location).catch(err => err) }
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
