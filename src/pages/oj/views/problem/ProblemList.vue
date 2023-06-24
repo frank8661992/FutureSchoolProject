@@ -1,6 +1,7 @@
 <template>
   <Row type="flex"  :gutter="20">
     <Col :span="18">
+      <div class="main-content">
       <Panel shadow>
         <div slot="title">{{$t('m.Problem_List')}}</div>
         <div slot="extra">
@@ -32,7 +33,7 @@
                     icon="ios-search-strong"/>
             </li>
             <li>
-              <Button type="info" @click="onReset">
+              <Button type="info" @click="onReset" shape="circle" class="btn-class">
                 <Icon type="refresh"></Icon>
                 {{$t('m.Reset')}}
               </Button>
@@ -45,30 +46,34 @@
               :loading="loadings.table" :border="false"></Table>
       </Panel>
       <Pagination
+        class="problem-pagination"
         :total="total" :page-size.sync="query.limit" 
         @on-change="pushRouter" @on-page-size-change="pushRouter" 
         :current.sync="query.page" :show-sizer="true"
       ></Pagination>
+      </div>
     </Col>
 
     <Col :span="6">
-    <Panel :padding="10">
-      <div slot="title" class="taglist-title">{{$t('m.Tags')}}</div>
-      <Button v-for="tag in tagList"
-              :key="tag.name"
-              @click="filterByTag(tag.name)"
-              type="ghost"
-              :disabled="query.tag === tag.name"
-              shape="circle"
-              class="tag-btn">{{tag.name}}
-      </Button>
+      <div class="tag-content">
+      <Panel :padding="0">
+        <div slot="title">{{$t('m.Tags')}}</div>
+        <Button v-for="tag in tagList"
+                :key="tag.name"
+                @click="filterByTag(tag.name)"
+                type="ghost"
+                :disabled="query.tag === tag.name"
+                shape="circle"
+                class="tag-btn">{{tag.name}}
+        </Button>
 
-      <Button long id="pick-one" @click="pickone">
-        <Icon type="shuffle"></Icon>
-        {{$t('m.Pick_One')}}
-      </Button>
-    </Panel>
-    <Spin v-if="loadings.tag" fix size="large"></Spin>
+        <Button long id="pick-one" @click="pickone">
+          <Icon type="shuffle"></Icon>
+          {{$t('m.Pick_One')}}
+        </Button>
+      </Panel>
+      <Spin v-if="loadings.tag" fix size="large"></Spin>
+      </div>
     </Col>
   </Row>
 </template>
@@ -110,7 +115,7 @@
           },
           {
             title: this.$i18n.t('m.Title'),
-            width: 250,
+            width: 200,
             render: (h, params) => {
               return h('span', {
                 on: {
@@ -282,17 +287,24 @@
 </script>
 
 <style scoped lang="less">
-  .taglist-title {
-    margin-left: -10px;
-    margin-bottom: -10px;
-  }
-
   .tag-btn {
     margin-right: 5px;
     margin-bottom: 10px;
   }
 
   #pick-one {
-    margin-top: 10px;
+    margin: 10px 0;
+  }
+  .tag-content{
+    background: #fff;
+    padding: 24px 16px 0 16px;
+  }
+  .main-content{
+    .problem-pagination{
+      margin: 0;
+      float: none;
+      padding: 20px 0;
+      text-align: right;
+    }
   }
 </style>

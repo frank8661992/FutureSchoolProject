@@ -45,14 +45,18 @@
 
   .panel-title {
     .section-title;
-    padding: 0 0 24px 0;
-  }
-
-  .panel-extra {
+    height: 40px;
     line-height: 40px;
-    .ivu-input-icon {
-      line-height: 40px;
-    }
+    padding: 0;
+    margin:0 0 16px 0;
+  }
+  .ivu-card-extra{
+    top: 0;
+    right:0;
+  }
+  .panel-extra {
+    height: 40px;
+    line-height: 40px;
     ul.filter {
       > li {
         display: inline-block;
