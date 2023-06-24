@@ -1,56 +1,57 @@
 <template>
-  <Row type="flex" :gutter="18">
-    <Col :span=19>
-    <Panel shadow>
-      <div slot="title">{{$t('m.Problem_List')}}</div>
-      <div slot="extra">
-        <ul class="filter">
-          <li>
-            <Dropdown @on-click="filterByDifficulty">
-              <span>{{query.difficulty === '' ? this.$i18n.t('m.Difficulty') : this.$i18n.t('m.' + query.difficulty)}}
-                <Icon type="arrow-down-b"></Icon>
-              </span>
-              <Dropdown-menu slot="list">
-                <Dropdown-item name="">{{$t('m.All')}}</Dropdown-item>
-                <Dropdown-item name="Low">{{$t('m.Low')}}</Dropdown-item>
-                <Dropdown-item name="Mid" >{{$t('m.Mid')}}</Dropdown-item>
-                <Dropdown-item name="High">{{$t('m.High')}}</Dropdown-item>
-              </Dropdown-menu>
-            </Dropdown>
-          </li>
-          <li>
-            <i-switch size="large" @on-change="handleTagsVisible">
-              <span slot="open">{{$t('m.Tags')}}</span>
-              <span slot="close">{{$t('m.Tags')}}</span>
-            </i-switch>
-          </li>
-          <li>
-            <Input v-model="query.keyword"
-                   @on-enter="filterByKeyword"
-                   @on-click="filterByKeyword"
-                   placeholder="keyword"
-                   icon="ios-search-strong"/>
-          </li>
-          <li>
-            <Button type="info" @click="onReset">
-              <Icon type="refresh"></Icon>
-              {{$t('m.Reset')}}
-            </Button>
-          </li>
-        </ul>
-      </div>
-      <Table style="width: 100%; font-size: 16px;"
-             :columns="problemTableColumns"
-             :data="problemList"
-             :loading="loadings.table"
-             disabled-hover></Table>
-    </Panel>
-    <Pagination
-      :total="total" :page-size.sync="query.limit" @on-change="pushRouter" @on-page-size-change="pushRouter" :current.sync="query.page" :show-sizer="true"></Pagination>
-
+  <Row type="flex"  :gutter="20">
+    <Col :span="18">
+      <Panel shadow>
+        <div slot="title">{{$t('m.Problem_List')}}</div>
+        <div slot="extra">
+          <ul class="filter">
+            <li>
+              <Dropdown @on-click="filterByDifficulty">
+                <span>{{query.difficulty === '' ? this.$i18n.t('m.Difficulty') : this.$i18n.t('m.' + query.difficulty)}}
+                  <Icon type="arrow-down-b"></Icon>
+                </span>
+                <Dropdown-menu slot="list">
+                  <Dropdown-item name="">{{$t('m.All')}}</Dropdown-item>
+                  <Dropdown-item name="Low">{{$t('m.Low')}}</Dropdown-item>
+                  <Dropdown-item name="Mid" >{{$t('m.Mid')}}</Dropdown-item>
+                  <Dropdown-item name="High">{{$t('m.High')}}</Dropdown-item>
+                </Dropdown-menu>
+              </Dropdown>
+            </li>
+            <li>
+              <i-switch size="large" @on-change="handleTagsVisible">
+                <span slot="open">{{$t('m.Tags')}}</span>
+                <span slot="close">{{$t('m.Tags')}}</span>
+              </i-switch>
+            </li>
+            <li>
+              <Input v-model="query.keyword"
+                    @on-enter="filterByKeyword"
+                    @on-click="filterByKeyword"
+                    placeholder="keyword"
+                    icon="ios-search-strong"/>
+            </li>
+            <li>
+              <Button type="info" @click="onReset">
+                <Icon type="refresh"></Icon>
+                {{$t('m.Reset')}}
+              </Button>
+            </li>
+          </ul>
+        </div>
+        <Table style="width: 100%; font-size: 16px;"
+              :columns="problemTableColumns"
+              :data="problemList"
+              :loading="loadings.table" :border="false"></Table>
+      </Panel>
+      <Pagination
+        :total="total" :page-size.sync="query.limit" 
+        @on-change="pushRouter" @on-page-size-change="pushRouter" 
+        :current.sync="query.page" :show-sizer="true"
+      ></Pagination>
     </Col>
 
-    <Col :span="5">
+    <Col :span="6">
     <Panel :padding="10">
       <div slot="title" class="taglist-title">{{$t('m.Tags')}}</div>
       <Button v-for="tag in tagList"
@@ -92,43 +93,36 @@
           {
             title: '#',
             key: '_id',
-            width: 80,
+            align: 'center',
+            width: 50,
             render: (h, params) => {
-              return h('Button', {
-                props: {
-                  type: 'text',
-                  size: 'large'
+              return h('span', {
+                style: {
+                  cursor: 'pointer'
                 },
                 on: {
                   click: () => {
                     this.$router.push({name: 'problem-details', params: {problemID: params.row._id}})
                   }
-                },
-                style: {
-                  padding: '2px 0'
                 }
               }, params.row._id)
             }
           },
           {
             title: this.$i18n.t('m.Title'),
-            width: 400,
+            width: 250,
             render: (h, params) => {
-              return h('Button', {
-                props: {
-                  type: 'text',
-                  size: 'large'
-                },
+              return h('span', {
                 on: {
                   click: () => {
                     this.$router.push({name: 'problem-details', params: {problemID: params.row._id}})
                   }
                 },
+                class: {
+                  'text-ellipsis': true
+                },
                 style: {
-                  padding: '2px 0',
-                  overflowX: 'auto',
-                  textAlign: 'left',
-                  width: '100%'
+                  cursor: 'pointer'
                 }
               }, params.row.title)
             }

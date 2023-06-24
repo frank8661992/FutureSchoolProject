@@ -51,7 +51,8 @@
                 style: {
                   'display': 'inline-block',
                   'max-width': '200px',
-                  'color': this.mainColor
+                  'color': this.mainColor,
+                  cursor: 'pointer'
                 },
                 on: {
                   click: () => {
@@ -240,54 +241,54 @@
         api.getUserRank(offset, this.limit, RULE_TYPE.ACM).then(res => {
           this.loadingTable = false
 
-          // ady mock data
-          res.data.data = {results: [{
-            user: {username: 'ady1'},
-            accepted_number: 10,
-            submission_number: 15,
-            mood: '就算前进的路再苦，也比站在原地更接近幸福,就算前进的路再苦，也比站在原地更接近幸福就算前进的路再苦，也比站在原地更接近幸福'
-          }, {
-            user: {username: 'ady2'},
-            accepted_number: 20,
-            submission_number: 25,
-            mood: '就算前进的路再苦，也比站在原地更接近幸福'
-          }, {
-            user: {username: 'ady3'},
-            accepted_number: 30,
-            submission_number: 35,
-            mood: '就算前进的路再苦，也比站在原地更接近幸福,也比'
-          }, {
-            user: {username: 'ady4'},
-            accepted_number: 30,
-            submission_number: 35,
-            mood: '就算前进的路再苦，也比站在原地更接近幸福,也比站'
-          }, {
-            user: {username: 'ady5'},
-            accepted_number: 25,
-            submission_number: 35,
-            mood: '就算前进的路再苦，也比站在原地更接近幸福,也比站在'
-          }, {
-            user: {username: 'ady6'},
-            accepted_number: 10,
-            submission_number: 25
-          }, {
-            user: {username: 'ady7'},
-            accepted_number: 20,
-            submission_number: 35
-          }, {
-            user: {username: 'ady8'},
-            accepted_number: 40,
-            submission_number: 40
-          }, {
-            user: {username: 'ady9'},
-            accepted_number: 10,
-            submission_number: 25
-          }, {
-            user: {username: 'ady10'},
-            accepted_number: 20,
-            submission_number: 45
-          }],
-            total: 20}
+          // // ady mock data
+          // res.data.data = {results: [{
+          //   user: {username: 'ady1'},
+          //   accepted_number: 10,
+          //   submission_number: 15,
+          //   mood: '就算前进的路再苦，也比站在原地更接近幸福,就算前进的路再苦，也比站在原地更接近幸福就算前进的路再苦，也比站在原地更接近幸福'
+          // }, {
+          //   user: {username: 'ady2'},
+          //   accepted_number: 20,
+          //   submission_number: 25,
+          //   mood: '就算前进的路再苦，也比站在原地更接近幸福'
+          // }, {
+          //   user: {username: 'ady3'},
+          //   accepted_number: 30,
+          //   submission_number: 35,
+          //   mood: '就算前进的路再苦，也比站在原地更接近幸福,也比'
+          // }, {
+          //   user: {username: 'ady4'},
+          //   accepted_number: 30,
+          //   submission_number: 35,
+          //   mood: '就算前进的路再苦，也比站在原地更接近幸福,也比站'
+          // }, {
+          //   user: {username: 'ady5'},
+          //   accepted_number: 25,
+          //   submission_number: 35,
+          //   mood: '就算前进的路再苦，也比站在原地更接近幸福,也比站在'
+          // }, {
+          //   user: {username: 'ady6'},
+          //   accepted_number: 10,
+          //   submission_number: 25
+          // }, {
+          //   user: {username: 'ady7'},
+          //   accepted_number: 20,
+          //   submission_number: 35
+          // }, {
+          //   user: {username: 'ady8'},
+          //   accepted_number: 40,
+          //   submission_number: 40
+          // }, {
+          //   user: {username: 'ady9'},
+          //   accepted_number: 10,
+          //   submission_number: 25
+          // }, {
+          //   user: {username: 'ady10'},
+          //   accepted_number: 20,
+          //   submission_number: 45
+          // }],
+          //   total: 20}
   
           if (page === 1) {
             this.changeCharts(res.data.data.results.slice(0, 10))

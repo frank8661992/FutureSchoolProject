@@ -45,7 +45,7 @@
 
   .panel-title {
     .section-title;
-    padding: 5px 15px;
+    padding: 0 0 24px 0;
   }
 
   .panel-extra {

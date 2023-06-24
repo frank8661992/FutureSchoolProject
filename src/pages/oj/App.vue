@@ -89,11 +89,12 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      height:calc(100vh - 120px);
+      overflow: auto;
       .content{
         width: 58%;
         min-width: 800px;
-        height:calc(100vh - 120px);
-        overflow: auto;
+        height: 100%;
       }
     }
   }
