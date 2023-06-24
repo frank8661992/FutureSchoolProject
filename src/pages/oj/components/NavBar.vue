@@ -1,21 +1,19 @@
 <template>
   <div id="header">
     <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
-      <div class="logo"><span>{{website.website_name}}</span></div>
+      <div >
+      <img src="../../../assets/futureschool_logo.png" alt="" class="logo">
+      </div>
       <Menu-item name="/">
-        <Icon type="home"></Icon>
         {{$t('m.Home')}}
       </Menu-item>
       <Menu-item name="/problem">
-        <Icon type="ios-keypad"></Icon>
         {{$t('m.NavProblems')}}
       </Menu-item>
       <Menu-item name="/contest">
-        <Icon type="trophy"></Icon>
         {{$t('m.Contests')}}
       </Menu-item>
       <Menu-item name="/status">
-        <Icon type="ios-pulse-strong"></Icon>
         {{$t('m.NavStatus')}}
       </Menu-item>
       <Menu-item name="/acm-rank">
@@ -23,7 +21,6 @@
       </Menu-item>
       <Submenu name="about">
         <template slot="title">
-          <Icon type="information-circled"></Icon>
           {{$t('m.About')}}
         </template>
         <Menu-item name="/about">
@@ -133,10 +130,13 @@
     }
 
     .logo {
-      margin-left: 2%;
-      margin-right: 2%;
-      font-size: 20px;
+      margin-left: 21.4%;
+      margin-right: 14.5%;
+      // margin: 1% 10% 0 10%;
+      //上 右 下 左
       float: left;
+      width:149px;
+      height:46px;
       line-height: 46px;
     }
 
