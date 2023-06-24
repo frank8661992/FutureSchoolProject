@@ -30,6 +30,7 @@
 </script>
 
 <style scoped lang="less">
+  @color-theme: #5363ED;
   .disabled {
     /*background-color: #ccc;*/
     opacity: 1;
@@ -51,8 +52,8 @@
     padding: 15px 20px;
     &:hover {
       background: #f8f8f9;
-      border-left: 2px solid #5cadff;
-      color: #2d8cf0;
+      border-left: 2px solid @color-theme;
+      color: @color-theme;
     }
     & > .ivu-icon {
       font-size: 16px;
