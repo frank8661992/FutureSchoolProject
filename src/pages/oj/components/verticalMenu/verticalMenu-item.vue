@@ -30,7 +30,6 @@
 </script>
 
 <style scoped lang="less">
-  @color-theme: #5363ED;
   .disabled {
     /*background-color: #ccc;*/
     opacity: 1;

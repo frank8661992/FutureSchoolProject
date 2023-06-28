@@ -192,7 +192,6 @@
   }
 </script>
 <style lang="less" scoped>
-  @color-theme: #5363ED;
   #contest-card {
     #no-contest {
       text-align: center;

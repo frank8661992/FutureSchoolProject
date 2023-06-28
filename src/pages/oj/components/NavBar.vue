@@ -1,68 +1,69 @@
 <template>
-  <div id="header">
-    <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
-      <div class="logo"><span>{{website.website_name}}</span></div>
-      <Menu-item name="/">
-        <Icon type="home"></Icon>
-        {{$t('m.Home')}}
-      </Menu-item>
-      <Menu-item name="/problem">
-        <Icon type="ios-keypad"></Icon>
-        {{$t('m.NavProblems')}}
-      </Menu-item>
-      <Menu-item name="/contest">
-        <Icon type="trophy"></Icon>
-        {{$t('m.Contests')}}
-      </Menu-item>
-      <Menu-item name="/status">
-        <Icon type="ios-pulse-strong"></Icon>
-        {{$t('m.NavStatus')}}
-      </Menu-item>
-      <Menu-item name="/acm-rank">
-        {{$t('m.ACM_Rank')}}
-      </Menu-item>
-      <Submenu name="about">
-        <template slot="title">
-          <Icon type="information-circled"></Icon>
-          {{$t('m.About')}}
-        </template>
-        <Menu-item name="/about">
-          {{$t('m.Judger')}}
-        </Menu-item>
-        <Menu-item name="/FAQ">
-          {{$t('m.FAQ')}}
-        </Menu-item>
-      </Submenu>
-      <template v-if="!isAuthenticated">
-        <div class="btn-menu">
-          <Button type="ghost"
-                  ref="loginBtn"
-                  shape="circle"
-                  @click="handleBtnClick('login')">{{$t('m.Login')}}
-          </Button>
-          <Button v-if="website.allow_register"
-                  type="ghost"
-                  shape="circle"
-                  @click="handleBtnClick('register')"
-                  style="margin-left: 5px;">{{$t('m.Register')}}
-          </Button>
+  <div class="header">
+    <div class="header-center">
+      <img src="../../../assets/futureschool_logo.png" alt="" class="logo">
+      <div class="menu-right">
+        <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
+          <Menu-item name="/">
+            {{$t('m.Home')}}
+          </Menu-item>
+          <Menu-item name="/problem">
+            {{$t('m.NavProblems')}}
+          </Menu-item>
+          <Menu-item name="/contest">
+            {{$t('m.Contests')}}
+          </Menu-item>
+          <Menu-item name="/status">
+            {{$t('m.NavStatus')}}
+          </Menu-item>
+          <Menu-item name="/acm-rank">
+            {{$t('m.ACM_Rank')}}
+          </Menu-item>
+          <Submenu name="about">
+            <template slot="title">
+              {{$t('m.About')}}
+            </template>
+            <Menu-item name="/about">
+              {{$t('m.Judger')}}
+            </Menu-item>
+            <Menu-item name="/FAQ">
+              {{$t('m.FAQ')}}
+            </Menu-item>
+          </Submenu>
+        </Menu>
+        <div class="user-btn">
+          <template v-if="!isAuthenticated">
+            <div class="btn-menu">
+              <Button type="ghost"
+                      ref="loginBtn"
+                      shape="circle"
+                      @click="handleBtnClick('login')">{{$t('m.Login')}}
+              </Button>
+              <Button v-if="website.allow_register"
+                      type="ghost"
+                      shape="circle"
+                      @click="handleBtnClick('register')"
+                      style="margin-left: 5px;">{{$t('m.Register')}}
+              </Button>
+            </div>
+          </template>
+          <template v-else>
+            <Dropdown class="drop-menu" @on-click="handleRoute" placement="bottom" trigger="click">
+              <Button type="text" class="drop-menu-title">{{ user.username }}
+                <Icon type="arrow-down-b"></Icon>
+              </Button>
+              <Dropdown-menu slot="list">
+                <Dropdown-item name="/user-home">{{$t('m.MyHome')}}</Dropdown-item>
+                <Dropdown-item name="/status?myself=1">{{$t('m.MySubmissions')}}</Dropdown-item>
+                <Dropdown-item name="/setting/profile">{{$t('m.Settings')}}</Dropdown-item>
+                <Dropdown-item v-if="isAdminRole" name="/admin">{{$t('m.Management')}}</Dropdown-item>
+                <Dropdown-item divided name="/logout">{{$t('m.Logout')}}</Dropdown-item>
+              </Dropdown-menu>
+            </Dropdown>
+          </template>
         </div>
-      </template>
-      <template v-else>
-        <Dropdown class="drop-menu" @on-click="handleRoute" placement="bottom" trigger="click">
-          <Button type="text" class="drop-menu-title">{{ user.username }}
-            <Icon type="arrow-down-b"></Icon>
-          </Button>
-          <Dropdown-menu slot="list">
-            <Dropdown-item name="/user-home">{{$t('m.MyHome')}}</Dropdown-item>
-            <Dropdown-item name="/status?myself=1">{{$t('m.MySubmissions')}}</Dropdown-item>
-            <Dropdown-item name="/setting/profile">{{$t('m.Settings')}}</Dropdown-item>
-            <Dropdown-item v-if="isAdminRole" name="/admin">{{$t('m.Management')}}</Dropdown-item>
-            <Dropdown-item divided name="/logout">{{$t('m.Logout')}}</Dropdown-item>
-          </Dropdown-menu>
-        </Dropdown>
-      </template>
-    </Menu>
+      </div>
+    </div>
     <Modal v-model="modalVisible" :width="400">
       <div slot="header" class="modal-title">{{$t('m.Welcome_to')}} {{website.website_name_shortcut}}</div>
       <component :is="modalStatus.mode" v-if="modalVisible"></component>
@@ -119,40 +120,35 @@
 </script>
 
 <style lang="less" scoped>
-  #header {
-    min-width: 300px;
-    top: 0;
-    left: 0;
-    height: 60px;
+  .header {
+    height: 66px;
     width: 100%;
     z-index: 1000;
     background-color: #fff;
     box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
-    .oj-menu {
-      background: #fdfdfd;
-    }
-
-    .logo {
-      margin-left: 2%;
-      margin-right: 2%;
-      font-size: 20px;
-      float: left;
-      line-height: 46px;
-    }
-
-    .drop-menu {
-      float: right;
-      margin-right: 30px;
-      position: absolute;
-      right: 10px;
-      &-title {
-        font-size: 18px;
+    display: flex;
+    align-items: center;
+    .header-center{
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      min-width: 1100px;
+      width: 58%;
+      .logo {
+        width: auto;
+        height:46px;
       }
-    }
-    .btn-menu {
-      font-size: 16px;
-      float: right;
-      margin-right: 10px;
+      .menu-right{
+        display: flex;
+        align-items: center;
+
+        .user-btn{
+          max-width: 100px;
+          height: 30px;
+          border: 1px solid @color-theme;
+          border-radius: 10px;
+        }
+      }
     }
   }
 

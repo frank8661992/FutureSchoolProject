@@ -101,7 +101,7 @@
             title: '#',
             key: '_id',
             align: 'center',
-            width: 50,
+            width: 60,
             render: (h, params) => {
               return h('span', {
                 style: {
@@ -307,7 +307,6 @@
 </script>
 
 <style scoped lang="less">
-  @color-theme: #5363ED;
   .tag-btn {
     margin-right: 5px;
     margin-bottom: 5px;

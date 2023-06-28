@@ -58,7 +58,7 @@ module.exports = {
       '@': resolve('src'),
       '@oj': resolve('src/pages/oj'),
       '@admin': resolve('src/pages/admin'),
-      '~': resolve('src/components')
+      '~': resolve('src/components'),
     }
   },
   module: {
