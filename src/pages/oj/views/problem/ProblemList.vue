@@ -117,7 +117,7 @@
           },
           {
             title: this.$i18n.t('m.Title'),
-            width: 200,
+            width: 260,
             render: (h, params) => {
               return h('span', {
                 on: {
@@ -262,6 +262,7 @@
             {
               title: this.$i18n.t('m.Tags'),
               align: 'center',
+              width: 120,
               render: (h, params) => {
                 let tags = []
                 params.row.tags.forEach(tag => {

@@ -1,18 +1,24 @@
 <template>
-  <div class="flex-container">
-    <div id="problem-main">
+  <Row type="flex"  :gutter="20">
+    <Col :span="18">
       <!--problem main-->
-      <Panel :padding="40" shadow>
+      <div class="main-content">
+      <Panel>
         <div slot="title">{{problem.title}}</div>
         <div id="problem-content" class="markdown-body" v-katex>
-          <p class="title">{{$t('m.Description')}}</p>
-          <p class="content" v-html=problem.description></p>
-          <!-- {{$t('m.music')}} -->
-          <p class="title">{{$t('m.Input')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.FromFile')}}: {{ problem.io_mode.input }})</span></p>
-          <p class="content" v-html=problem.input_description></p>
+          <div class="one-item">
+            <p class="title">{{$t('m.Description')}}</p>
+            <p class="content" v-html=problem.description></p>
+          </div>
+          <div class="one-item">
+            <p class="title">{{$t('m.Input')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.FromFile')}}: {{ problem.io_mode.input }})</span></p>
+            <p class="content" v-html=problem.input_description></p>
+          </div>
 
-          <p class="title">{{$t('m.Output')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.ToFile')}}: {{ problem.io_mode.output }})</span></p>
-          <p class="content" v-html=problem.output_description></p>
+          <div class="one-item">
+            <p class="title">{{$t('m.Output')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.ToFile')}}: {{ problem.io_mode.output }})</span></p>
+            <p class="content" v-html=problem.output_description></p>
+          </div>
 
           <div v-for="(sample, index) of problem.samples" :key="index">
             <div class="flex-container sample">
@@ -48,6 +54,7 @@
 
         </div>
       </Panel>
+      </div>
       <!--problem main end-->
       <Card :padding="20" id="submit-code" dis-hover>
         <CodeMirror :value.sync="code"
@@ -99,9 +106,9 @@
           </Col>
         </Row>
       </Card>
-    </div>
+    </Col>
 
-    <div id="right-column">
+    <Col :span="6">
       <VerticalMenu @on-click="handleRoute">
         <template v-if="this.contestID">
           <VerticalMenu-item :route="{name: 'contest-problem-list', params: {contestID: contestID}}">
@@ -186,7 +193,7 @@
           <ECharts :options="pie"></ECharts>
         </div>
       </Card>
-    </div>
+    </Col>
 
     <Modal v-model="graphVisible">
       <div id="pieChart-detail">
@@ -196,7 +203,7 @@
         <Button type="ghost" @click="graphVisible=false">{{$t('m.Close')}}</Button>
       </div>
     </Modal>
-  </div>
+  </Row>
 </template>
 
 <script>
@@ -528,20 +535,29 @@
   }
 
   #problem-content {
-    margin-top: -50px;
-    .title {
-      font-size: 20px;
-      font-weight: 400;
-      margin: 25px 0 8px 0;
-      color: #3091f2;
-      .copy {
-        padding-left: 8px;
+    .one-item{
+      border-bottom: 1px solid rgba(233,233,233,1);
+      padding-bottom: 19px;
+      margin-bottom: 20px;
+      .title {
+        font-size: 16px;
+        color: #5363ED;
+        font-weight: 500;
+        margin-bottom: 8px;
+
+        .copy {
+          padding-left: 8px;
+        }
       }
     }
-    p.content {
-      margin-left: 25px;
-      margin-right: 20px;
-      font-size: 15px
+    
+    .content {
+      margin: 0;
+      font-size: 14px;
+      font-family: HelveticaNeue;
+      color: #666666;
+      font-weight: 400;
+      margin: 0;
     }
     .sample {
       align-items: stretch;

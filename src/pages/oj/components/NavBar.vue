@@ -23,34 +23,25 @@
             <template slot="title">
               {{$t('m.About')}}
             </template>
-            <Menu-item name="/about">
+            <Menu-item name="/about" class="sub-menu-item">
               {{$t('m.Judger')}}
             </Menu-item>
-            <Menu-item name="/FAQ">
+            <Menu-item name="/FAQ" class="sub-menu-item">
               {{$t('m.FAQ')}}
             </Menu-item>
           </Submenu>
         </Menu>
         <div class="user-btn">
-          <template v-if="!isAuthenticated">
-            <div class="btn-menu">
-              <Button type="ghost"
-                      ref="loginBtn"
-                      shape="circle"
-                      @click="handleBtnClick('login')">{{$t('m.Login')}}
-              </Button>
-              <Button v-if="website.allow_register"
-                      type="ghost"
-                      shape="circle"
-                      @click="handleBtnClick('register')"
-                      style="margin-left: 5px;">{{$t('m.Register')}}
-              </Button>
-            </div>
-          </template>
+          <Button v-if="!isAuthenticated"
+                  type="ghost"
+                  ref="loginBtn"
+                  shape="circle"
+                  @click="handleBtnClick('login')">{{$t('m.Login')}}
+          </Button>
           <template v-else>
             <Dropdown class="drop-menu" @on-click="handleRoute" placement="bottom" trigger="click">
-              <Button type="text" class="drop-menu-title">{{ user.username }}
-                <Icon type="arrow-down-b"></Icon>
+              <Button type="text" shape="circle" class="drop-menu-title">{{ user.username }}
+                <Icon type="ios-arrow-down" />
               </Button>
               <Dropdown-menu slot="list">
                 <Dropdown-item name="/user-home">{{$t('m.MyHome')}}</Dropdown-item>
@@ -131,6 +122,7 @@
     .header-center{
       margin: 0 auto;
       display: flex;
+      align-items: center;
       justify-content: space-between;
       min-width: 1100px;
       width: 58%;
@@ -141,12 +133,20 @@
       .menu-right{
         display: flex;
         align-items: center;
-
+        .ivu-menu-item,.ivu-menu-submenu{
+          font-size: 16px;
+          padding: 0 35px;
+          &.sub-menu-item{
+            padding: 7px 35px;
+            border-bottom: none;
+          }
+        }
         .user-btn{
-          max-width: 100px;
-          height: 30px;
-          border: 1px solid @color-theme;
-          border-radius: 10px;
+          margin-left: 2px;
+          .drop-menu-title{
+            font-size: 16px;
+            width: 80px;
+          }
         }
       }
     }
