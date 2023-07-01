@@ -28,7 +28,7 @@ export const m = {
   Are_you_sure_you_want_to_reset_your_code: '你確定要重置你的程式碼嗎?',
   Code_can_not_be_empty: '你不能提交空的程式碼',
   Submit_code_successfully: '成功提交程式碼',
-  You_have_solved_the_problem: '你已經解決了該試題',
+  You_have_solved_the_problem: '恭喜！你已經解決了該試題',
   Submitted_successfully: '成功提交',
   You_have_submitted_a_solution: '你已經提交了解答.',
   Contest_has_ended: '比賽已經結束',

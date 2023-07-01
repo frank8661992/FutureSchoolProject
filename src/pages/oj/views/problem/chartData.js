@@ -23,8 +23,7 @@ const pie = {
     {
       name: 'Summary',
       type: 'pie',
-      radius: '80%',
-      center: ['50%', '55%'],
+      radius: ['40%', '70%'],
       itemStyle: {
         normal: {color: getItemColor}
       },

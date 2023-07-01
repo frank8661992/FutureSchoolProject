@@ -21,42 +21,41 @@
           </div>
 
           <div v-for="(sample, index) of problem.samples" :key="index">
-            <div class="flex-container sample">
+            <div class="sample mb6">
               <div class="sample-input">
-                <p class="title">{{$t('m.Sample_Input')}} {{index + 1}}
+                <p class="title">{{$t('m.Sample_Input')}} {{index + 1}}：</p>
+                <pre>{{sample.input}}</pre>
                   <a class="copy"
                      v-clipboard:copy="sample.input"
                      v-clipboard:success="onCopy"
                      v-clipboard:error="onCopyError">
-                    <Icon type="clipboard"></Icon>
+                    <Icon type="ios-copy-outline" />
                   </a>
-                </p>
-                <pre>{{sample.input}}</pre>
               </div>
               <div class="sample-output">
-                <p class="title">{{$t('m.Sample_Output')}} {{index + 1}}</p>
+                <p class="title">{{$t('m.Sample_Output')}} {{index + 1}}：</p>
                 <pre>{{sample.output}}</pre>
               </div>
             </div>
           </div>
 
-          <div v-if="problem.hint">
-            <p class="title">{{$t('m.Hint')}}</p>
-            <Card dis-hover>
-              <div class="content" v-html=problem.hint></div>
+          <div v-if="problem.hint" class="mb6">
+            <p class="title">{{$t('m.Hint')}}：</p>
+            <Card dis-hover :padding="8">
+              <div class="hint-content" v-html=problem.hint></div>
             </Card>
           </div>
 
-          <div v-if="problem.source">
-            <p class="title">{{$t('m.Source')}}</p>
-            <p class="content">{{problem.source}}</p>
+          <div v-if="problem.source" class="mb6">
+            <p class="title">{{$t('m.Source')}}：</p>
+            <pre>{{problem.source}}</pre>
           </div>
 
         </div>
       </Panel>
       </div>
       <!--problem main end-->
-      <Card :padding="20" id="submit-code" dis-hover>
+      <div id="submit-code">
         <CodeMirror :value.sync="code"
                     :languages="problem.languages"
                     :language="language"
@@ -65,7 +64,7 @@
                     @changeTheme="onChangeTheme"
                     @changeLang="onChangeLang"></CodeMirror>
         <Row type="flex" justify="space-between">
-          <Col :span="10">
+          <Col>
             <div class="status" v-if="statusVisible">
               <template v-if="!this.contestID || (this.contestID && OIContestRealTimePermission)">
                 <span>{{$t('m.Status')}}</span>
@@ -97,34 +96,34 @@
                 <Input v-model="captchaCode" class="captcha-code"/>
               </div>
             </template>
-            <Button type="warning" icon="edit" :loading="submitting" @click="submitCode"
+            <Button type="primary" :loading="submitting" @click="submitCode" shape="circle"
                     :disabled="problemSubmitDisabled || submitted"
-                    class="fl-right">
+                    class="fl-right submit-button">
               <span v-if="submitting">{{$t('m.Submitting')}}</span>
               <span v-else>{{$t('m.Submit')}}</span>
             </Button>
           </Col>
         </Row>
-      </Card>
+      </div>
     </Col>
 
     <Col :span="6">
-      <VerticalMenu @on-click="handleRoute">
+      <VerticalMenu @on-click="handleRoute" class="vertical-menu">
         <template v-if="this.contestID">
-          <VerticalMenu-item :route="{name: 'contest-problem-list', params: {contestID: contestID}}">
-            <Icon type="ios-photos"></Icon>
-            {{$t('m.Problems')}}
+          <VerticalMenu-item class="vertical-menu-item" :route="{name: 'contest-problem-list', params: {contestID: contestID}}">
+            <svg class="icon" viewBox="0 0 1024 1024" height="19"><path d="M811.116 1005.137H212.884a194.29 194.29 0 0 1-194.02-194.021V212.884a194.29 194.29 0 0 1 194.02-194.02h598.232a194.29 194.29 0 0 1 194.02 194.02v598.232a194.29 194.29 0 0 1-194.02 194.02zM212.884 72.757A140.126 140.126 0 0 0 72.758 212.885v598.232a140.126 140.126 0 0 0 140.126 140.126h598.232a140.126 140.126 0 0 0 140.126-140.126V212.884A140.126 140.126 0 0 0 811.116 72.758z"/><path d="M788.21 350.316H439.782a25.6 25.6 0 1 1 0-50.93h348.43a25.6 25.6 0 0 1 0 50.93zm-496.1 0h-58.207a26.947 26.947 0 0 1 0-53.895h58.206a26.947 26.947 0 0 1 0 53.895zm496.1 188.631H439.782a25.6 25.6 0 1 1 0-50.93h348.43a25.6 25.6 0 0 1 0 50.93zm-496.1 1.617h-58.207a26.947 26.947 0 0 1 0-53.895h58.206a26.947 26.947 0 0 1 0 53.895zm496.1 204.53H439.782a25.6 25.6 0 1 1 0-50.93h348.43a25.6 25.6 0 0 1 0 50.93zm-496.1 1.348h-58.207a26.947 26.947 0 1 1 0-53.895h58.206a26.947 26.947 0 0 1 0 53.895z"/></svg>
+            <span class="menu-title">{{$t('m.Problems')}}</span>
           </VerticalMenu-item>
 
-          <VerticalMenu-item :route="{name: 'contest-announcement-list', params: {contestID: contestID}}">
-            <Icon type="chatbubble-working"></Icon>
-            {{$t('m.Announcements')}}
+          <VerticalMenu-item class="vertical-menu-item"  :route="{name: 'contest-announcement-list', params: {contestID: contestID}}">
+            <svg class="icon" viewBox="0 0 1024 1024" height="19"><path d="m683.712 800-89.408 148.992a96 96 0 0 1-164.608 0L340.288 800H192A160 160 0 0 1 32 640V192A160 160 0 0 1 192 32h640a160 160 0 0 1 160 160v448a160 160 0 0 1-160 160H683.712zM832 736a96 96 0 0 0 96-96V192a96 96 0 0 0-96-96H192a96 96 0 0 0-96 96v448a96 96 0 0 0 96 96h184.512l108.032 180.096a32 32 0 0 0 54.912 0L647.488 736H832z" fill="#5A5A5A"/><path d="M192 416a64 64 0 1 0 128 0 64 64 0 1 0-128 0zM448 416a64 64 0 1 0 128 0 64 64 0 1 0-128 0zM704 416a64 64 0 1 0 128 0 64 64 0 1 0-128 0z" fill="#5A5A5A"/></svg>
+            <span class="menu-title">{{$t('m.Announcements')}}</span>
           </VerticalMenu-item>
         </template>
 
-        <VerticalMenu-item v-if="!this.contestID || OIContestRealTimePermission" :route="submissionRoute">
-          <Icon type="navicon-round"></Icon>
-           {{$t('m.Submissions')}}
+        <VerticalMenu-item class="vertical-menu-item"  v-if="!this.contestID || OIContestRealTimePermission" :route="submissionRoute">
+          <svg class="icon" viewBox="0 0 1024 1024" height="19"><path d="M178.058 796.086h395.086q20.964 0 20.964 20.964t-20.964 20.964H178.058q-20.964 0-20.964-20.964t20.964-20.964zM700.245 253.248l246.68-246.68q15.395-15.394 30.788 0 15.394 15.393 0 30.787l-246.68 246.68q-15.394 15.394-30.788 0-15.393-15.393 0-30.787zM163.007 577.041h413.631q20.964 0 20.964 20.964v1.613q0 20.964-20.964 20.964H163.007q-20.964 0-20.964-20.964v-1.613q0-20.964 20.964-20.964zM163.007 341.065h413.631q20.964 0 20.964 20.963v1.613q0 20.964-20.964 20.964H163.007q-20.964 0-20.964-20.964v-1.613q0-20.963 20.964-20.963z" fill="#2c2c2c"/><path d="M596.796 84.393H120.542a80.63 80.63 0 0 0-80.63 80.63v777.003a80.63 80.63 0 0 0 80.63 80.63H783.32a80.63 80.63 0 0 0 80.63-80.63V380.842a24.458 24.458 0 0 0-48.647 0v561.184a33.058 33.058 0 0 1-33.058 33.059H120.542a33.058 33.058 0 0 1-33.059-33.059V166.098a33.058 33.058 0 0 1 33.059-31.715h476.254a24.458 24.458 0 0 0 0-48.647z" fill="#2c2c2c"/></svg>
+          <span class="menu-title">{{$t('m.Submissions')}}</span>
         </VerticalMenu-item>
 
         <template v-if="this.contestID">
@@ -140,31 +139,36 @@
         </template>
       </VerticalMenu>
 
-      <Card id="info">
+      <Card id="info" :padding="0">
         <div slot="title" class="header">
           <Icon type="information-circled"></Icon>
           <span class="card-title">{{$t('m.Information')}}</span>
         </div>
         <ul>
-          <li><p>ID</p>
-            <p>{{problem._id}}</p></li>
+          <li>
+            <p>ID</p>
+            <p>{{problem._id}}</p>
+          </li>
           <li>
             <p>{{$t('m.Time_Limit')}}</p>
-            <p>{{problem.time_limit}}MS</p></li>
+            <p>{{problem.time_limit}}MS</p>
+          </li>
           <li>
             <p>{{$t('m.Memory_Limit')}}</p>
-            <p>{{problem.memory_limit}}MB</p></li>
-          <li>
+            <p>{{problem.memory_limit}}MB</p>
+          </li>
           <li>
             <p>{{$t('m.IOMode')}}</p>
             <p>{{problem.io_mode.io_mode}}</p>
           </li>
           <li>
             <p>{{$t('m.Created')}}</p>
-            <p>{{problem.created_by.username}}</p></li>
+            <p>{{problem.created_by.username}}</p>
+          </li>
           <li v-if="problem.difficulty">
             <p>{{$t('m.Level')}}</p>
-            <p>{{$t('m.' + problem.difficulty)}}</p></li>
+            <p>{{$t('m.' + problem.difficulty)}}</p>
+          </li>
           <li v-if="problem.total_score">
             <p>{{$t('m.Score')}}</p>
             <p>{{problem.total_score}}</p>
@@ -187,7 +191,7 @@
         <div slot="title">
           <Icon type="ios-analytics"></Icon>
           <span class="card-title">{{$t('m.Statistic')}}</span>
-          <Button type="ghost" size="small" id="detail" @click="graphVisible = !graphVisible">Details</Button>
+          <Button type="ghost" id="detail" shape="circle" @click="graphVisible = !graphVisible">Details</Button>
         </div>
         <div class="echarts">
           <ECharts :options="pie"></ECharts>
@@ -523,17 +527,6 @@
     margin-left: 8px;
   }
 
-  .flex-container {
-    #problem-main {
-      flex: auto;
-      margin-right: 18px;
-    }
-    #right-column {
-      flex: none;
-      width: 220px;
-    }
-  }
-
   #problem-content {
     .one-item{
       border-bottom: 1px solid rgba(233,233,233,1);
@@ -544,10 +537,6 @@
         color: #5363ED;
         font-weight: 500;
         margin-bottom: 8px;
-
-        .copy {
-          padding-left: 8px;
-        }
       }
     }
     
@@ -560,26 +549,42 @@
       margin: 0;
     }
     .sample {
+      display: flex;
       align-items: stretch;
+      font-size: 14px;
+      color: rgba(0,0,0,0.65);
+      line-height: 22px;
+      font-weight: 400;
       &-input, &-output {
         width: 50%;
         flex: 1 1 auto;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         margin-right: 5%;
+        align-items: center;
       }
-      pre {
-        flex: 1 1 auto;
-        align-self: stretch;
-        border-style: solid;
-        background: transparent;
+      .copy {
+        font-size: 20px;
+        margin-left: 8px;
       }
+    }
+    .mb6{
+      margin-bottom: 6px;
+    }
+
+    pre {
+      flex: 1 1 auto;
+      align-self: stretch;
+      border-style: solid;
+      background: transparent;
     }
   }
 
   #submit-code {
     margin-top: 20px;
     margin-bottom: 20px;
+    padding: 24px 32px;
+    background:#fff;
     .status {
       float: left;
       span {
@@ -595,16 +600,36 @@
         margin-left: 20px;
       }
     }
+    .submit-button{
+      padding: 5px 27px;
+      font-size: 14px;
+    }
+  }
+
+  .vertical-menu{
+    .vertical-menu-item{
+      display: flex;
+      align-items: center;
+      .menu-title{
+        opacity: 0.85;
+        font-size: 16px;
+        color: #000000;
+        font-weight: 700;
+        margin-left: 9px;
+      }
+    }
   }
 
   #info {
     margin-bottom: 20px;
     margin-top: 20px;
+    padding: 20px;
     ul {
       list-style-type: none;
       li {
+        margin-top: 10px;
+        padding: 10px 0;
         border-bottom: 1px dotted #e9eaec;
-        margin-bottom: 10px;
         p {
           display: inline-block;
         }
@@ -623,6 +648,7 @@
   }
 
   #pieChart {
+    padding: 20px;
     .echarts {
       height: 250px;
       width: 210px;

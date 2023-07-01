@@ -28,7 +28,7 @@ export const m = {
   Are_you_sure_you_want_to_reset_your_code: '确定要重置代码吗？',
   Code_can_not_be_empty: '不能提交空代码',
   Submit_code_successfully: '成功提交代码',
-  You_have_solved_the_problem: '你已经解决了该问题',
+  You_have_solved_the_problem: '恭喜！你已经解决了该问题！',
   Submitted_successfully: '成功提交',
   You_have_submitted_a_solution: '你已经提交了解答',
   Contest_has_ended: '比赛已结束',
