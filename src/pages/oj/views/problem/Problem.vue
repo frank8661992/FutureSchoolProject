@@ -127,22 +127,22 @@
         </VerticalMenu-item>
 
         <template v-if="this.contestID">
-          <VerticalMenu-item v-if="!this.contestID || OIContestRealTimePermission"
+          <VerticalMenu-item v-if="!this.contestID || OIContestRealTimePermission" class="vertical-menu-item"
                              :route="{name: 'contest-rank', params: {contestID: contestID}}">
             <Icon type="stats-bars"></Icon>
-            {{$t('m.Rankings')}}
+            <span class="menu-title">{{$t('m.Rankings')}}</span>
           </VerticalMenu-item>
-          <VerticalMenu-item :route="{name: 'contest-details', params: {contestID: contestID}}">
+          <VerticalMenu-item :route="{name: 'contest-details', params: {contestID: contestID}}"  class="vertical-menu-item">
             <Icon type="home"></Icon>
-            {{$t('m.View_Contest')}}
+            <span class="menu-title">{{$t('m.View_Contest')}}</span>
           </VerticalMenu-item>
         </template>
       </VerticalMenu>
 
       <Card id="info" :padding="0">
-        <div slot="title" class="header">
-          <Icon type="information-circled"></Icon>
-          <span class="card-title">{{$t('m.Information')}}</span>
+        <div slot="title" class="vertical-menu-item">
+          <svg class="icon" viewBox="0 0 1024 1024" width="19" height="19"><path d="M810.667 213.333Q810.667 256 768 256H512q-42.667 0-42.667-42.667 0-42.666 42.667-42.666h256q42.667 0 42.667 42.666zM981.333 384q0 42.667-42.666 42.667H512q-42.667 0-42.667-42.667T512 341.333h426.667q42.666 0 42.666 42.667zM128 213.333V384h170.667V213.333H128M128 128h170.667A85.333 85.333 0 0 1 384 213.333V384a85.333 85.333 0 0 1-85.333 85.333H128A85.333 85.333 0 0 1 42.667 384V213.333A85.333 85.333 0 0 1 128 128zM810.667 640q0 42.667-42.667 42.667H512q-42.667 0-42.667-42.667T512 597.333h256q42.667 0 42.667 42.667zM981.333 810.667q0 42.666-42.666 42.666H512q-42.667 0-42.667-42.666Q469.333 768 512 768h426.667q42.666 0 42.666 42.667zM128 640v170.667h170.667V640H128m0-85.333h170.667A85.333 85.333 0 0 1 384 640v170.667A85.333 85.333 0 0 1 298.667 896H128a85.333 85.333 0 0 1-85.333-85.333V640A85.333 85.333 0 0 1 128 554.667z" fill="#2c2c2c"/></svg>
+          <span class="menu-title">{{$t('m.Information')}}</span>
         </div>
         <ul>
           <li>
@@ -188,10 +188,12 @@
       </Card>
 
       <Card id="pieChart" :padding="0" v-if="!this.contestID || OIContestRealTimePermission">
-        <div slot="title">
-          <Icon type="ios-analytics"></Icon>
-          <span class="card-title">{{$t('m.Statistic')}}</span>
-          <Button type="ghost" id="detail" shape="circle" @click="graphVisible = !graphVisible">Details</Button>
+        <div slot="title" class="title-line">
+          <div class="title-wrapper vertical-menu-item">
+            <svg class="icon" viewBox="0 0 1024 1024" width="19" height="19"><path d="M762 942H262c-71.68 0-130-58.32-130-130V212c0-71.68 58.32-130 130-130h500c71.68 0 130 58.32 130 130v600c0 71.68-58.32 130-130 130zM262 142c-38.59 0-70 31.41-70 70v600c0 38.59 31.41 70 70 70h500c38.59 0 70-31.41 70-70V212c0-38.59-31.41-70-70-70H262z"/><path d="M692 402H332c-38.59 0-70-31.41-70-70v-60c0-38.59 31.41-70 70-70h360c38.59 0 70 31.41 70 70v60c0 38.59-31.41 70-70 70zM332 262c-5.42 0-10 4.58-10 10v60c0 5.42 4.58 10 10 10h360c5.43 0 10-4.58 10-10v-60c0-5.42-4.57-10-10-10H332zm40 280h-60c-16.57 0-30-13.43-30-30s13.43-30 30-30h60c16.57 0 30 13.43 30 30s-13.43 30-30 30zm170 0h-60c-16.57 0-30-13.43-30-30s13.43-30 30-30h60c16.56 0 30 13.43 30 30s-13.44 30-30 30zm170 0h-60c-16.56 0-30-13.43-30-30s13.44-30 30-30h60c16.56 0 30 13.43 30 30s-13.44 30-30 30zM372 672h-60c-16.57 0-30-13.44-30-30s13.43-30 30-30h60c16.57 0 30 13.44 30 30s-13.43 30-30 30zm170 0h-60c-16.57 0-30-13.44-30-30s13.43-30 30-30h60c16.56 0 30 13.44 30 30s-13.44 30-30 30zm170 0h-60c-16.56 0-30-13.44-30-30s13.44-30 30-30h60c16.56 0 30 13.44 30 30s-13.44 30-30 30zM372 802h-60c-16.57 0-30-13.44-30-30s13.43-30 30-30h60c16.57 0 30 13.44 30 30s-13.43 30-30 30zm170 0h-60c-16.57 0-30-13.44-30-30s13.43-30 30-30h60c16.56 0 30 13.44 30 30s-13.44 30-30 30zm170 0h-60c-16.56 0-30-13.44-30-30s13.44-30 30-30h60c16.56 0 30 13.44 30 30s-13.44 30-30 30z"/></svg>
+            <span class="card-title menu-item">{{$t('m.Statistic')}}</span>
+          </div>
+          <Button type="ghost" shape="circle" @click="graphVisible = !graphVisible">Details</Button>
         </div>
         <div class="echarts">
           <ECharts :options="pie"></ECharts>
@@ -523,10 +525,6 @@
 </script>
 
 <style lang="less" scoped>
-  .card-title {
-    margin-left: 8px;
-  }
-
   #problem-content {
     .one-item{
       border-bottom: 1px solid rgba(233,233,233,1);
@@ -605,18 +603,16 @@
       font-size: 14px;
     }
   }
-
-  .vertical-menu{
-    .vertical-menu-item{
-      display: flex;
-      align-items: center;
-      .menu-title{
-        opacity: 0.85;
-        font-size: 16px;
-        color: #000000;
-        font-weight: 700;
-        margin-left: 9px;
-      }
+  
+  .vertical-menu-item{
+    display: flex;
+    align-items: center;
+    .menu-title{
+      opacity: 0.85;
+      font-size: 16px;
+      color: #000000;
+      font-weight: 700;
+      margin-left: 9px;
     }
   }
 
@@ -625,9 +621,9 @@
     margin-top: 20px;
     padding: 20px;
     ul {
+      margin-top: 10px;
       list-style-type: none;
       li {
-        margin-top: 10px;
         padding: 10px 0;
         border-bottom: 1px dotted #e9eaec;
         p {
@@ -648,15 +644,20 @@
   }
 
   #pieChart {
-    padding: 20px;
-    .echarts {
-      height: 250px;
-      width: 210px;
+    .title-line{
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    #detail {
-      position: absolute;
-      right: 10px;
-      top: 10px;
+    .title-wrapper{
+      display: flex;
+      align-items: center;
+    }
+    .echarts {
+      margin: 0 auto;
+      width: 258px;
+      height: 260px;
     }
   }
 

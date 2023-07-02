@@ -59,10 +59,20 @@ body {
   position: relative;
 }
 
+a {
+  color: @color-theme ;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  &:hover{
+    color: @color-theme ;
+  }
+}
+
 a.emphasis{
   color: #495060;
   &:hover {
-    color: #2d8cf0;
+    color: @color-theme;
   }
 }
 

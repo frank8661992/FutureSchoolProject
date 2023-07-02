@@ -1,11 +1,19 @@
 const pieColorMap = {
-  'AC': {color: '#19be6b'},
-  'WA': {color: '#ed3f14'},
+  'AC': {color: '#5363ED'},
+  'WA': {color: '#53C2ED'},
   'TLE': {color: '#ff9300'},
   'MLE': {color: '#f7de00'},
   'RE': {color: '#ff6104'},
-  'CE': {color: '#80848f'},
+  'CE': {color: '#f7ac04'},
   'PAC': {color: '#2d8cf0'}
+}
+
+const legendStyle = {
+  left: 'center',
+  orient: 'horizontal',
+  itemWidth: 8,
+  itemGap: 40,
+  icon: 'circle'
 }
 
 function getItemColor (obj) {
@@ -14,9 +22,7 @@ function getItemColor (obj) {
 
 const pie = {
   legend: {
-    left: 'center',
-    top: '10',
-    orient: 'horizontal',
+    ...legendStyle,
     data: ['AC', 'WA']
   },
   series: [
@@ -25,7 +31,12 @@ const pie = {
       type: 'pie',
       radius: ['40%', '70%'],
       itemStyle: {
-        normal: {color: getItemColor}
+        normal: {
+          color: getItemColor,
+          borderRadius: 10,
+          borderColor: '#fff',
+          borderWidth: 2
+        }
       },
       data: [
         {value: 0, name: 'WA'},
@@ -33,9 +44,9 @@ const pie = {
       ],
       label: {
         normal: {
-          position: 'inner',
+          position: 'inner', // 数据会显示在图形上
           show: true,
-          formatter: '{b}: {c}\n {d}%',
+          formatter: '{c}',
           textStyle: {
             fontWeight: 'bold'
           }
@@ -47,13 +58,7 @@ const pie = {
 
 const largePie = {
   legend: {
-    left: 'center',
-    top:
-      '10',
-    orient:
-      'horizontal',
-    itemGap:
-      20,
+    ...legendStyle,
     data:
       ['AC', 'RE', 'WA', 'TLE', 'PAC', 'MLE']
   },
