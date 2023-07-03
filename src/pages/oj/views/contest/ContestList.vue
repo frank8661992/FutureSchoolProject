@@ -1,6 +1,6 @@
 <template>
   <div class="main-content">
-    <Panel id="contest-card" shadow>
+    <Panel id="contest-card">
       <div slot="title">{{query.rule_type === '' ? this.$i18n.t('m.All') : query.rule_type}} {{$t('m.Contests')}}</div>
       <div slot="extra">
         <ul class="filter">

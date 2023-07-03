@@ -35,7 +35,7 @@
             </li>
           </ul>
         </div>
-        <Table stripe :disabled-hover="true" :columns="columns" :data="submissions" :loading="loadingTable"></Table>
+        <Table stripe :columns="columns" :data="submissions" :loading="loadingTable"></Table>
         <Pagination :total="total" :page-size="limit" @on-change="changeRoute" :current.sync="page"></Pagination>
       </Panel>
     </div>
@@ -80,7 +80,7 @@
               if (params.row.show_link) {
                 return h('span', {
                   class: {
-                    'link-color': true
+                    'link-style': true
                   },
                   style: {
                     cursor: 'pointer'
@@ -115,7 +115,7 @@
               return h('span',
                 {
                   class: {
-                    'link-color': true
+                    'link-style': true
                   },
                   style: {
                     cursor: 'pointer'
@@ -162,7 +162,7 @@
             render: (h, params) => {
               return h('span', {
                 class: {
-                  'link-color': true,
+                  'link-style': true,
                   'text-ellipsis': true
 
                 },

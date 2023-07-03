@@ -12,7 +12,7 @@
         </li>
       </ul>
     </div>
-    <Table :data="pagedAcInfo" :columns="columns" :loading="loadingTable" disabled-hover></Table>
+    <Table :data="pagedAcInfo" :columns="columns" :loading="loadingTable"></Table>
     <pagination :total="total"
                 :page-size.sync="limit"
                 :current.sync="page"
@@ -41,6 +41,7 @@
         columns: [
           {
             title: this.$i18n.t('m.AC_Time'),
+            width: 150,
             key: 'ac_time'
           },
           {
@@ -67,9 +68,11 @@
             title: this.$i18n.t('m.Username'),
             align: 'center',
             render: (h, {row}) => {
-              return h('a', {
+              return h('span', {
+                class: {
+                  'link-style': true
+                },
                 style: {
-                  display: 'inline-block',
                   'max-width': '150px'
                 },
                 on: {
@@ -110,7 +113,7 @@
             title: this.$i18n.t('m.Option'),
             fixed: 'right',
             align: 'center',
-            width: 100,
+            width: 150,
             render: (h, {row}) => {
               return h('Button', {
                 props: {

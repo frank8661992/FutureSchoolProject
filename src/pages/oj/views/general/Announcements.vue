@@ -1,11 +1,16 @@
 <template>
-  <Panel :padding="10">
-    <div slot="title">
+  <Panel>
+    <div slot="title" class="font-size-18">
       {{title}}
     </div>
     <div slot="extra">
-      <Button v-if="listVisible" type="primary" @click="init" :loading="btnLoading">{{$t('m.Refresh')}}</Button>
-      <Button v-else type="ghost" icon="ios-undo" @click="goBack">{{$t('m.Back')}}</Button>
+      <Button class="button-extra" v-if="listVisible" type="primary" shape="circle" @click="init" :loading="btnLoading">{{$t('m.Refresh')}}</Button>
+      <Button class="button-extra" v-else type="primary" shape="circle" @click="goBack">
+        <div class="icon-text" >
+          <Icon type="ios-undo" class="icon"/>
+          <span>{{$t('m.Back')}}</span>
+        </div>
+        </Button>
     </div>
 
     <transition-group name="announcement-animate" mode="in-out">
@@ -32,7 +37,7 @@
       </template>
 
       <template v-else>
-        <div v-katex v-html="announcement.content" key="content" class="content-container markdown-body"></div>
+        <div v-katex v-html="announcement.content" key="content" class="announcement-container markdown-body"></div>
       </template>
     </transition-group>
   </Panel>
@@ -110,8 +115,39 @@
     }
   }
 </script>
+<style lang="less">
+  .announcement-container {
+    p{
+      opacity: 0.85;
+      font-family: SourceHanSansCN-Regular;
+      font-size: 16px;
+      color: #666666;
+      line-height: 20px;
+      font-weight: 400;
+      margin-bottom: 26px;
+    }
+    img{
+      max-width: 1036px;
+    }
+  }
+
+</style>
 
 <style scoped lang="less">
+  .button-extra{
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    .icon-text{
+      display: flex;
+      align-items: center;
+      .icon{
+        font-size: 22px;
+        margin-right: 5px;
+      }
+    }
+  }
   .announcements-container {
     margin-top: -10px;
     margin-bottom: 10px;
@@ -150,10 +186,6 @@
         }
       }
     }
-  }
-
-  .content-container {
-    padding: 0 20px 20px 20px;
   }
 
   .no-announcement {

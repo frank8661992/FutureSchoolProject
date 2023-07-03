@@ -1,7 +1,7 @@
 <template>
   <Panel shadow>
     <div slot="title">{{ contest.title }}</div>
-    <div slot="extra">
+    <!-- <div slot="extra">
       <screen-full :height="18" :width="18" class="screen-full"></screen-full>
       <Poptip trigger="hover" placement="left-start">
         <Icon type="android-settings" size="20"></Icon>
@@ -31,11 +31,11 @@
           </template>
         </div>
       </Poptip>
-    </div>
+    </div> -->
     <div v-show="showChart" class="echarts">
       <ECharts :options="options" ref="chart" auto-resize></ECharts>
     </div>
-    <Table ref="tableRank" :columns="columns" :data="dataRank" disabled-hover height="600"></Table>
+    <Table ref="tableRank" :columns="columns" :data="dataRank"></Table>
     <Pagination :total="total"
                 :page-size.sync="limit"
                 :current.sync="page"
@@ -64,11 +64,11 @@
         total: 0,
         page: 1,
         contestID: '',
+        showChart: false,
         columns: [
           {
             align: 'center',
             width: 50,
-            fixed: 'left',
             render: (h, params) => {
               return h('span', {}, params.index + (this.page - 1) * this.limit + 1)
             }
@@ -76,12 +76,13 @@
           {
             title: this.$i18n.t('m.User_User'),
             align: 'center',
-            fixed: 'left',
             width: 150,
             render: (h, params) => {
-              return h('a', {
+              return h('span', {
+                class: {
+                  'link-style': true
+                },
                 style: {
-                  display: 'inline-block',
                   'max-width': '150px'
                 },
                 on: {
@@ -103,7 +104,10 @@
             render: (h, params) => {
               return h('span', {}, [
                 h('span', {}, params.row.accepted_number + ' / '),
-                h('a', {
+                h('span', {
+                  class: {
+                    'link-style': true
+                  },
                   on: {
                     click: () => {
                       this.$router.push({
@@ -274,8 +278,9 @@
             key: problem.id,
             width: problems.length > 15 ? 80 : null,
             renderHeader: (h, params) => {
-              return h('a', {
-                'class': {
+              return h('span', {
+                class: {
+                  'link-style': true,
                   'emphasis': true
                 },
                 on: {

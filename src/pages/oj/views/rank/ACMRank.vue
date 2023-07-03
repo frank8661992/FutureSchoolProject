@@ -46,7 +46,7 @@
             render: (h, params) => {
               return h('span', {
                 class: {
-                  'link-color': true
+                  'link-style': true
                 },
                 style: {
                   'display': 'inline-block',

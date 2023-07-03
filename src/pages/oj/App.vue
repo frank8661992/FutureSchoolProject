@@ -88,8 +88,8 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      height:calc(100vh - 140px);
-      margin-top: 20px;
+      height:calc(100vh - 160px);
+      margin: 20px 0;
       overflow: auto;
       .content{
         width: 58%;
@@ -104,6 +104,9 @@
     text-align: center;
     font-size: small;
     background: #FFFFFF;
+    position:fixed;
+    bottom: 0;
+    width: 100%;
   }
 
   .fadeInUp-enter-active {

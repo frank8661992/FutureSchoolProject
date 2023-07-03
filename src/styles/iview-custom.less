@@ -21,15 +21,21 @@ table {
 .ivu-table td {
   border-bottom-color: #dddddd;
   // height: 48px;
-  .link-color{
-    color: @color-theme
+  .link-style{
+    color: @color-theme;
+    cursor: pointer;
   }
 }
 .ivu-table-row-hover td{
   background-color: @color-theme !important;
-  color: #fff;
-  .link-color{
+  color: #fff !important;
+  .link-style{
     color: #fff !important;
+  }
+  .ivu-btn{
+    color: @color-theme;
+    background-color: #fff;
+    color: @color-theme;
   }
 }
 

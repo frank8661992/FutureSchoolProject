@@ -26,7 +26,7 @@
                 <Button type="info" @click="checkPassword">Enter</Button>
               </div>
             </Panel>
-            <Table :columns="columns" :data="contest_table" disabled-hover></Table>
+            <Table :columns="columns" :data="contest_table"></Table>
           </div>
         </template>
       </div>
