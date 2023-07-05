@@ -2,57 +2,57 @@
   <Row type="flex"  :gutter="20">
     <Col :span="18">
       <!--problem main-->
-      <div class="main-content">
-      <Panel>
-        <div slot="title">{{problem.title}}</div>
-        <div id="problem-content" class="markdown-body" v-katex>
-          <div class="one-item">
-            <p class="title">{{$t('m.Description')}}</p>
-            <p class="content" v-html=problem.description></p>
-          </div>
-          <div class="one-item">
-            <p class="title">{{$t('m.Input')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.FromFile')}}: {{ problem.io_mode.input }})</span></p>
-            <p class="content" v-html=problem.input_description></p>
-          </div>
+      <div class="main-content padding-bottom-20">
+        <Panel>
+          <div slot="title">{{problem.title}}</div>
+          <div id="problem-content" class="markdown-body" v-katex>
+            <div class="one-item">
+              <p class="title">{{$t('m.Description')}}</p>
+              <p class="content" v-html=problem.description></p>
+            </div>
+            <div class="one-item">
+              <p class="title">{{$t('m.Input')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.FromFile')}}: {{ problem.io_mode.input }})</span></p>
+              <p class="content" v-html=problem.input_description></p>
+            </div>
 
-          <div class="one-item">
-            <p class="title">{{$t('m.Output')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.ToFile')}}: {{ problem.io_mode.output }})</span></p>
-            <p class="content" v-html=problem.output_description></p>
-          </div>
+            <div class="one-item">
+              <p class="title">{{$t('m.Output')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.ToFile')}}: {{ problem.io_mode.output }})</span></p>
+              <p class="content" v-html=problem.output_description></p>
+            </div>
 
-          <div v-for="(sample, index) of problem.samples" :key="index">
-            <div class="sample mb6">
-              <div class="sample-input">
-                <p class="title">{{$t('m.Sample_Input')}} {{index + 1}}：</p>
-                <pre>{{sample.input}}</pre>
-                  <a class="copy"
-                     v-clipboard:copy="sample.input"
-                     v-clipboard:success="onCopy"
-                     v-clipboard:error="onCopyError">
-                    <Icon type="ios-copy-outline" />
-                  </a>
-              </div>
-              <div class="sample-output">
-                <p class="title">{{$t('m.Sample_Output')}} {{index + 1}}：</p>
-                <pre>{{sample.output}}</pre>
+            <div v-for="(sample, index) of problem.samples" :key="index">
+              <div class="sample mb6">
+                <div class="sample-input">
+                  <p class="title">{{$t('m.Sample_Input')}} {{index + 1}}：</p>
+                  <pre>{{sample.input}}</pre>
+                    <a class="copy"
+                      v-clipboard:copy="sample.input"
+                      v-clipboard:success="onCopy"
+                      v-clipboard:error="onCopyError">
+                      <Icon type="ios-copy-outline" />
+                    </a>
+                </div>
+                <div class="sample-output">
+                  <p class="title">{{$t('m.Sample_Output')}} {{index + 1}}：</p>
+                  <pre>{{sample.output}}</pre>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div v-if="problem.hint" class="mb6">
-            <p class="title">{{$t('m.Hint')}}：</p>
-            <Card dis-hover :padding="8">
-              <div class="hint-content" v-html=problem.hint></div>
-            </Card>
-          </div>
+            <div v-if="problem.hint" class="mb6">
+              <p class="title">{{$t('m.Hint')}}：</p>
+              <Card dis-hover :padding="8">
+                <div class="hint-content" v-html=problem.hint></div>
+              </Card>
+            </div>
 
-          <div v-if="problem.source" class="mb6">
-            <p class="title">{{$t('m.Source')}}：</p>
-            <pre>{{problem.source}}</pre>
-          </div>
+            <div v-if="problem.source" class="mb6">
+              <p class="title">{{$t('m.Source')}}：</p>
+              <pre>{{problem.source}}</pre>
+            </div>
 
-        </div>
-      </Panel>
+          </div>
+        </Panel>
       </div>
       <!--problem main end-->
       <div id="submit-code">
@@ -111,29 +111,29 @@
       <VerticalMenu @on-click="handleRoute" class="vertical-menu">
         <template v-if="this.contestID">
           <VerticalMenu-item class="vertical-menu-item" :route="{name: 'contest-problem-list', params: {contestID: contestID}}">
-            <svg class="icon" viewBox="0 0 1024 1024" height="19"><path d="M811.116 1005.137H212.884a194.29 194.29 0 0 1-194.02-194.021V212.884a194.29 194.29 0 0 1 194.02-194.02h598.232a194.29 194.29 0 0 1 194.02 194.02v598.232a194.29 194.29 0 0 1-194.02 194.02zM212.884 72.757A140.126 140.126 0 0 0 72.758 212.885v598.232a140.126 140.126 0 0 0 140.126 140.126h598.232a140.126 140.126 0 0 0 140.126-140.126V212.884A140.126 140.126 0 0 0 811.116 72.758z"/><path d="M788.21 350.316H439.782a25.6 25.6 0 1 1 0-50.93h348.43a25.6 25.6 0 0 1 0 50.93zm-496.1 0h-58.207a26.947 26.947 0 0 1 0-53.895h58.206a26.947 26.947 0 0 1 0 53.895zm496.1 188.631H439.782a25.6 25.6 0 1 1 0-50.93h348.43a25.6 25.6 0 0 1 0 50.93zm-496.1 1.617h-58.207a26.947 26.947 0 0 1 0-53.895h58.206a26.947 26.947 0 0 1 0 53.895zm496.1 204.53H439.782a25.6 25.6 0 1 1 0-50.93h348.43a25.6 25.6 0 0 1 0 50.93zm-496.1 1.348h-58.207a26.947 26.947 0 1 1 0-53.895h58.206a26.947 26.947 0 0 1 0 53.895z"/></svg>
+            <img src="../../../../assets/problem.svg" class="icon-img w19"/>
             <span class="menu-title">{{$t('m.Problems')}}</span>
           </VerticalMenu-item>
 
           <VerticalMenu-item class="vertical-menu-item"  :route="{name: 'contest-announcement-list', params: {contestID: contestID}}">
-            <svg class="icon" viewBox="0 0 1024 1024" height="19"><path d="m683.712 800-89.408 148.992a96 96 0 0 1-164.608 0L340.288 800H192A160 160 0 0 1 32 640V192A160 160 0 0 1 192 32h640a160 160 0 0 1 160 160v448a160 160 0 0 1-160 160H683.712zM832 736a96 96 0 0 0 96-96V192a96 96 0 0 0-96-96H192a96 96 0 0 0-96 96v448a96 96 0 0 0 96 96h184.512l108.032 180.096a32 32 0 0 0 54.912 0L647.488 736H832z" fill="#5A5A5A"/><path d="M192 416a64 64 0 1 0 128 0 64 64 0 1 0-128 0zM448 416a64 64 0 1 0 128 0 64 64 0 1 0-128 0zM704 416a64 64 0 1 0 128 0 64 64 0 1 0-128 0z" fill="#5A5A5A"/></svg>
+            <img src="../../../../assets/message.svg" class="icon-img w19"/>
             <span class="menu-title">{{$t('m.Announcements')}}</span>
           </VerticalMenu-item>
         </template>
 
         <VerticalMenu-item class="vertical-menu-item"  v-if="!this.contestID || OIContestRealTimePermission" :route="submissionRoute">
-          <svg class="icon" viewBox="0 0 1024 1024" height="19"><path d="M178.058 796.086h395.086q20.964 0 20.964 20.964t-20.964 20.964H178.058q-20.964 0-20.964-20.964t20.964-20.964zM700.245 253.248l246.68-246.68q15.395-15.394 30.788 0 15.394 15.393 0 30.787l-246.68 246.68q-15.394 15.394-30.788 0-15.393-15.393 0-30.787zM163.007 577.041h413.631q20.964 0 20.964 20.964v1.613q0 20.964-20.964 20.964H163.007q-20.964 0-20.964-20.964v-1.613q0-20.964 20.964-20.964zM163.007 341.065h413.631q20.964 0 20.964 20.963v1.613q0 20.964-20.964 20.964H163.007q-20.964 0-20.964-20.964v-1.613q0-20.963 20.964-20.963z" fill="#2c2c2c"/><path d="M596.796 84.393H120.542a80.63 80.63 0 0 0-80.63 80.63v777.003a80.63 80.63 0 0 0 80.63 80.63H783.32a80.63 80.63 0 0 0 80.63-80.63V380.842a24.458 24.458 0 0 0-48.647 0v561.184a33.058 33.058 0 0 1-33.058 33.059H120.542a33.058 33.058 0 0 1-33.059-33.059V166.098a33.058 33.058 0 0 1 33.059-31.715h476.254a24.458 24.458 0 0 0 0-48.647z" fill="#2c2c2c"/></svg>
+          <img src="../../../../assets/submit-info.svg" class="icon-img w19"/>
           <span class="menu-title">{{$t('m.Submissions')}}</span>
         </VerticalMenu-item>
 
         <template v-if="this.contestID">
           <VerticalMenu-item v-if="!this.contestID || OIContestRealTimePermission" class="vertical-menu-item"
                              :route="{name: 'contest-rank', params: {contestID: contestID}}">
-            <Icon type="stats-bars"></Icon>
+            <img src="../../../../assets/rank.svg" class="icon-img w19"/>
             <span class="menu-title">{{$t('m.Rankings')}}</span>
           </VerticalMenu-item>
           <VerticalMenu-item :route="{name: 'contest-details', params: {contestID: contestID}}"  class="vertical-menu-item">
-            <Icon type="home"></Icon>
+            <img src="../../../../assets/view-race.svg" class="icon-img w19"/>
             <span class="menu-title">{{$t('m.View_Contest')}}</span>
           </VerticalMenu-item>
         </template>
@@ -141,7 +141,7 @@
 
       <Card id="info" :padding="0">
         <div slot="title" class="vertical-menu-item">
-          <svg class="icon" viewBox="0 0 1024 1024" width="19" height="19"><path d="M810.667 213.333Q810.667 256 768 256H512q-42.667 0-42.667-42.667 0-42.666 42.667-42.666h256q42.667 0 42.667 42.666zM981.333 384q0 42.667-42.666 42.667H512q-42.667 0-42.667-42.667T512 341.333h426.667q42.666 0 42.666 42.667zM128 213.333V384h170.667V213.333H128M128 128h170.667A85.333 85.333 0 0 1 384 213.333V384a85.333 85.333 0 0 1-85.333 85.333H128A85.333 85.333 0 0 1 42.667 384V213.333A85.333 85.333 0 0 1 128 128zM810.667 640q0 42.667-42.667 42.667H512q-42.667 0-42.667-42.667T512 597.333h256q42.667 0 42.667 42.667zM981.333 810.667q0 42.666-42.666 42.666H512q-42.667 0-42.667-42.666Q469.333 768 512 768h426.667q42.666 0 42.666 42.667zM128 640v170.667h170.667V640H128m0-85.333h170.667A85.333 85.333 0 0 1 384 640v170.667A85.333 85.333 0 0 1 298.667 896H128a85.333 85.333 0 0 1-85.333-85.333V640A85.333 85.333 0 0 1 128 554.667z" fill="#2c2c2c"/></svg>
+          <img src="../../../../assets/problem-info.svg" class="icon-img w19"/>
           <span class="menu-title">{{$t('m.Information')}}</span>
         </div>
         <ul>
@@ -190,8 +190,8 @@
       <Card id="pieChart" :padding="0" v-if="!this.contestID || OIContestRealTimePermission">
         <div slot="title" class="title-line">
           <div class="title-wrapper vertical-menu-item">
-            <svg class="icon" viewBox="0 0 1024 1024" width="19" height="19"><path d="M762 942H262c-71.68 0-130-58.32-130-130V212c0-71.68 58.32-130 130-130h500c71.68 0 130 58.32 130 130v600c0 71.68-58.32 130-130 130zM262 142c-38.59 0-70 31.41-70 70v600c0 38.59 31.41 70 70 70h500c38.59 0 70-31.41 70-70V212c0-38.59-31.41-70-70-70H262z"/><path d="M692 402H332c-38.59 0-70-31.41-70-70v-60c0-38.59 31.41-70 70-70h360c38.59 0 70 31.41 70 70v60c0 38.59-31.41 70-70 70zM332 262c-5.42 0-10 4.58-10 10v60c0 5.42 4.58 10 10 10h360c5.43 0 10-4.58 10-10v-60c0-5.42-4.57-10-10-10H332zm40 280h-60c-16.57 0-30-13.43-30-30s13.43-30 30-30h60c16.57 0 30 13.43 30 30s-13.43 30-30 30zm170 0h-60c-16.57 0-30-13.43-30-30s13.43-30 30-30h60c16.56 0 30 13.43 30 30s-13.44 30-30 30zm170 0h-60c-16.56 0-30-13.43-30-30s13.44-30 30-30h60c16.56 0 30 13.43 30 30s-13.44 30-30 30zM372 672h-60c-16.57 0-30-13.44-30-30s13.43-30 30-30h60c16.57 0 30 13.44 30 30s-13.43 30-30 30zm170 0h-60c-16.57 0-30-13.44-30-30s13.43-30 30-30h60c16.56 0 30 13.44 30 30s-13.44 30-30 30zm170 0h-60c-16.56 0-30-13.44-30-30s13.44-30 30-30h60c16.56 0 30 13.44 30 30s-13.44 30-30 30zM372 802h-60c-16.57 0-30-13.44-30-30s13.43-30 30-30h60c16.57 0 30 13.44 30 30s-13.43 30-30 30zm170 0h-60c-16.57 0-30-13.44-30-30s13.43-30 30-30h60c16.56 0 30 13.44 30 30s-13.44 30-30 30zm170 0h-60c-16.56 0-30-13.44-30-30s13.44-30 30-30h60c16.56 0 30 13.44 30 30s-13.44 30-30 30z"/></svg>
-            <span class="card-title menu-item">{{$t('m.Statistic')}}</span>
+            <img src="../../../../assets/count.svg" class="icon-img w19"/>  
+            <span class="menu-title">{{$t('m.Statistic')}}</span>
           </div>
           <Button type="ghost" shape="circle" @click="graphVisible = !graphVisible">Details</Button>
         </div>
@@ -525,6 +525,9 @@
 </script>
 
 <style lang="less" scoped>
+  .padding-bottom-20{
+    padding-bottom: 20px;
+  }
   #problem-content {
     .one-item{
       border-bottom: 1px solid rgba(233,233,233,1);
@@ -607,6 +610,7 @@
   .vertical-menu-item{
     display: flex;
     align-items: center;
+    cursor: pointer;
     .menu-title{
       opacity: 0.85;
       font-size: 16px;

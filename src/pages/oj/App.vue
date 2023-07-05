@@ -77,11 +77,9 @@
   }
 
   .content-app {
-    background-size:100% 100%;
-    background-size:cover;
-    background-repeat: no-repeat;
-    background-attachment:fixed; 
-    background:url("../../assets/background.jpg");
+    background:url("../../assets/background.png") no-repeat;
+    background-size: cover;
+    background-position: center 0;
     margin: 0 auto;
     overflow-x:auto;
     .content-wrapper{

@@ -131,6 +131,7 @@
           legend: {
             data: [this.$i18n.t('m.AC'), this.$i18n.t('m.Total')],
             left: '0%',
+            top: -5,
             itemWidth: 8,
             itemHeight: 8,
             itemGap: 20
@@ -141,6 +142,12 @@
           },
           toolbox: {
             show: true,
+            emphasis: {
+              iconStyle: {
+                color: this.mainColor,
+                borderColor: this.mainColor
+              }
+            },
             feature: {
               mark: { show: true },
               dataView: {
@@ -162,13 +169,8 @@
               }
             },
             right: '2%',
-            itemSize: 11,
-            emphasis: {
-              iconStyle: {
-                color: this.mainColor,
-                borderColor: this.mainColor
-              }
-            }
+            top: -5,
+            itemSize: 11
           },
           calculable: true,
           xAxis: [
