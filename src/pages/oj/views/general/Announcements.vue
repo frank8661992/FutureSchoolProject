@@ -1,41 +1,51 @@
 <template>
-  <Panel :padding="10">
-    <div slot="title">
-      {{title}}
-    </div>
-    <div slot="extra">
-      <Button v-if="listVisible" type="primary" @click="init" :loading="btnLoading">{{$t('m.Refresh')}}</Button>
-      <Button v-else type="ghost" icon="ios-undo" @click="goBack">{{$t('m.Back')}}</Button>
+  <div class="annoucementDiv">
+
+    <div class="notice_img">
+      <img src="../../../../assets/notice.png" alt="">
     </div>
 
-    <transition-group name="announcement-animate" mode="in-out">
+    
+
+    <div class="notice_detail" name="announcement-animate" mode="in-out">
       <div class="no-announcement" v-if="!announcements.length" key="no-announcement">
         <p>{{$t('m.No_Announcements')}}</p>
       </div>
+
+
       <template v-if="listVisible">
-        <ul class="announcements-container" key="list">
-          <li v-for="announcement in announcements" :key="announcement.title">
-            <div class="flex-container">
-              <div class="title"><a class="entry" @click="goAnnouncement(announcement)">
+        <div class="announcements-container" key="list">
+          <div v-for="announcement in announcements" :key="announcement.title">
+
+              <div class="title"><a @click="goAnnouncement(announcement)">
                 {{announcement.title}}</a></div>
-              <div class="date">{{announcement.create_time | localtime }}</div>
-              <div class="creator"> {{$t('m.By')}} {{announcement.created_by.username}}</div>
-            </div>
-          </li>
-        </ul>
-        <Pagination v-if="!isContest"
+
+              <div class="date"><span>{{announcement.create_time | localtime }}</span></div>
+
+              <div class="creator"><span>{{$t('m.By')}} {{announcement.created_by.username}}</span></div>
+
+          </div>
+        </div>
+          <!-- <Pagination v-if="!isContest"
                     key="page"
                     :total="total"
                     :page-size="limit"
                     @on-change="getAnnouncementList">
-        </Pagination>
+        </Pagination> -->
+        
       </template>
 
       <template v-else>
         <div v-katex v-html="announcement.content" key="content" class="content-container markdown-body"></div>
       </template>
-    </transition-group>
-  </Panel>
+    </div>
+
+    <div class="notice_btn" slot="extra">
+      <Button clsaa="btn" v-if="listVisible" type="primary" @click="init" :loading="btnLoading">{{$t('m.Refresh')}}</Button>
+      <Button clsaa="btn" v-else type="ghost" icon="ios-undo" @click="goBack">{{$t('m.Back')}}</Button>
+    </div>
+
+  </div>
 </template>
 
 <script>
@@ -112,45 +122,63 @@
 </script>
 
 <style scoped lang="less">
-  .announcements-container {
-    margin-top: -10px;
-    margin-bottom: 10px;
-    li {
-      padding-top: 15px;
-      list-style: none;
-      padding-bottom: 15px;
-      margin-left: 20px;
-      font-size: 16px;
-      border-bottom: 1px solid rgba(187, 187, 187, 0.5);
-      &:last-child {
-        border-bottom: none;
-      }
-      .flex-container {
-        .title {
-          flex: 1 1;
-          text-align: left;
-          padding-left: 10px;
-          a.entry {
-            color: #495060;
-            &:hover {
-              color: #2d8cf0;
-              border-bottom: 1px solid #2d8cf0;
-            }
-          }
-        }
-        .creator {
-          flex: none;
-          width: 200px;
-          text-align: center;
-        }
-        .date {
-          flex: none;
-          width: 200px;
-          text-align: center;
-        }
-      }
+  .annoucementDiv {
+    height: 154px;
+    display: flex;
+    flex-direction: row
+    
+  }
+  .notice_img {
+    width: 100px;
+    height: 87px;
+    flex-grow: 1;
+    margin-top: 8px;
+    margin-left:8px;
+
+  }
+  .notice_detail {
+    flex-basis: 200px;
+    flex-grow: 11;
+  }
+  .notice_btn {
+    width:80px;
+    flex-grow: 1;
+    margin-top:37px;
+    padding-left:10px; 
+    
+  }
+
+  .ivu-btn {
+    border-radius: 26px;
+    width: 120px;
+    height: 40px;
+
+  }
+  .title {
+    a {
+      font-size: 22px;
+      font-family: 'STYuanti-SC-Regular';
+      color: #000000;
     }
   }
+
+  .date {
+    span {
+      font-size: 16px;
+      color: #999999;
+    }
+  }
+  .creator{
+    margin-top: 17px;
+    span {
+      font-size: 20px;
+
+    }
+
+
+  }
+
+
 
   .content-container {
     padding: 0 20px 20px 20px;
