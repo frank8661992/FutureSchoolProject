@@ -1,14 +1,19 @@
 <template>
   <div class="container">
     <div class="avatar-container">
-      <img class="avatar" :src="profile.avatar"/>
+      <img class="avatar" src="../../../../assets/bg2-setting.png"/>
+
     </div>
-    <Card :padding="100">
+
+    <Card class="cardDiv">
+
       <div v-if="profile.user">
-        <p style="margin-top: -10px">
-          <span v-if="profile.user" class="emphasis">{{profile.user.username}}</span>
+        <p>
+          <span v-if="profile.user" class="emphasis-name">{{profile.user.username}}</span>
           <span v-if="profile.school">@{{profile.school}}</span>
         </p>
+        <div class="headline2"><span>海纳百川，有容乃大</span></div>
+
         <p v-if="profile.mood">
           {{profile.mood}}
         </p>
@@ -16,45 +21,28 @@
 
         <div class="flex-container">
           <div class="left">
-            <p>{{$t('m.UserHomeSolved')}}</p>
+            <p class="title-left">{{$t('m.UserHomeSolved')}}</p>
             <p class="emphasis">{{profile.accepted_number}}</p>
           </div>
           <div class="middle">
-            <p>{{$t('m.UserHomeserSubmissions')}}</p>
+            <p class="title-middle">{{$t('m.UserHomeserSubmissions')}}</p>
             <p class="emphasis">{{profile.submission_number}}</p>
           </div>
           <div class="right">
-            <p>{{$t('m.UserHomeScore')}}</p>
+            <p class="title-right">{{$t('m.UserHomeScore')}}</p>
             <p class="emphasis">{{profile.total_score}}</p>
           </div>
         </div>
-        <div id="problems">
-          <div v-if="problems.length">{{$t('m.List_Solved_Problems')}}
-            <Poptip v-if="refreshVisible" trigger="hover" placement="right-start">
-              <Icon type="ios-help-outline"></Icon>
-              <div slot="content">
-                <p>If you find the following problem id does not exist,<br> try to click the button.</p>
-                <Button type="info" @click="freshProblemDisplayID">regenerate</Button>
-              </div>
-            </Poptip>
-          </div>
-          <p v-else>{{$t('m.UserHomeIntro')}}</p>
-          <div class="btns">
-            <div class="problem-btn" v-for="problemID of problems" :key="problemID">
-              <Button type="ghost" @click="goProblem(problemID)">{{problemID}}</Button>
-            </div>
-          </div>
-        </div>
+      
         <div id="icons">
-          <a :href="profile.github">
-            <Icon type="social-github-outline" size="30"></Icon>
-          </a>
-          <a :href="'mailto:'+ profile.user.email">
-            <Icon class="icon" type="ios-email-outline" size="30"></Icon>
-          </a>
-          <a :href="profile.blog">
-            <Icon class="icon" type="ios-world-outline" size="30"></Icon>
-          </a>
+          
+            <img class="githublogo" src="../../../../assets/githublogo22px.png" alt="">
+       
+          
+            <img class="letterlogo" src="../../../../assets/letter22px.png" alt="">
+          
+         
+            <img class="multilogo" src="../../../../assets/multi-language22px.png" alt="">
         </div>
       </div>
     </Card>
@@ -133,70 +121,110 @@
 <style lang="less" scoped>
   .container {
     position: relative;
-    width: 75%;
-    margin: 170px auto;
+    width: 100%;
+    min-width: 800px;
     text-align: center;
-    p {
-      margin-top: 8px;
-      margin-bottom: 8px;
+    .cardDiv {
+      //ivu-card-body的padding为16px 原型上root距顶164px 163-16=148px
+      padding-top: 148px;
+      height:509px;
     }
+   
     .avatar-container {
       position: absolute;
-      left: 50%;
-      transform: translate(-50%);
+      width:100%;
+      margin-top:34px;
       z-index: 1;
-      top: -90px;
       .avatar {
-        width: 140px;
-        height: 140px;
+        width: 106px;
+        height: 106px;
         border-radius: 50%;
         box-shadow: 0 1px 1px 0;
       }
     }
-    .emphasis {
+    .headline2 {
+        margin-top:4px;
+        margin-bottom: 24px;
+        font-size: 14px;
+        color:#000000;
+        opacity:0.65;
+    }
+    .emphasis-name {
       font-size: 20px;
       font-weight: 600;
+      color:#000000;
+      opacity:0.85;
+
+
     }
     #split {
       margin: 20px auto;
+      opacity:1;
+      border: 1px dashed #E8E8E8;
       width: 90%;
     }
     .flex-container {
-      margin-top: 30px;
+      margin-top: 32px;
       padding: auto 20px;
+
+      .emphasis {
+        margin-top: 8px;
+        font-size: 24px;
+        color:#000000;
+        opacity:0.85;
+
+
+    }
       .left {
         flex: 1 1;
+        .title-left {
+          color:#000000;
+          opacity:0.45;
+        }
+        
       }
       .middle {
         flex: 1 1;
-        border-left: 1px solid #999;
-        border-right: 1px solid #999;
+        border-left: 1px solid #E8E8E8;
+        border-right: 1px solid #E8E8E8;
+        .title-middle {
+          color:#000000;
+          opacity:0.45;
+        }
       }
       .right {
         flex: 1 1;
-      }
-    }
-    #problems {
-      margin-top: 40px;
-      padding-left: 30px;
-      padding-right: 30px;
-      font-size: 18px;
-      .btns {
-        margin-top: 15px;
-        .problem-btn {
-          display: inline-block;
-          margin: 5px;
+        .title-right {
+          color:#000000;
+          opacity:0.45;
         }
       }
     }
+    
     #icons {
+      position: relative;
+      margin-top:94px;
+      color:#000000;
+      .githublogo {
       position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translate(-50%);
-      .icon {
-        padding-left: 20px;
+      left:43.8%;
+        
+      }
+      .letterlogo {
+      position: absolute;
+      left:48.8%;
+      top:2px;
+        
+      }
+      .multilogo {
+      position: absolute;
+      left:53%;
+      top:3px;
+
+        
+        // margin-top: 30px;
       }
     }
-  }
+    
+}
 </style>

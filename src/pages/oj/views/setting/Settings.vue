@@ -63,7 +63,7 @@
   @avatar-radius: 50%;
 
   .container {
-    width: 90%;
+    width: 100%;
     min-width: 800px;
     margin: auto;
   }
