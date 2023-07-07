@@ -1,5 +1,5 @@
 <template>
-  <div class="main-content">
+  <div>
     <panel shadow v-if="contests.length" class="contest">
       <div slot="title">
         <Button type="text"  class="contest-title" @click="goContest">{{contests[index].title}}</Button>
@@ -79,5 +79,8 @@
         margin-top: 25px;
       }
     }
+  }
+  .announcement{
+    padding-bottom: 20px;
   }
 </style>

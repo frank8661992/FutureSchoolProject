@@ -1,59 +1,55 @@
 <template>
-  <Panel class="announcement-panel">
-    <div slot="title" class="font-size-18">
-      {{title}}
-    </div>
-    <div slot="extra">
-      <Button class="button-extra" v-if="listVisible" type="primary" shape="circle" @click="init" :loading="btnLoading">{{$t('m.Refresh')}}</Button>
-      <Button class="button-extra" v-else type="primary" shape="circle" @click="goBack">
-        <div class="icon-text" >
-          <Icon type="ios-undo" class="icon"/>
-          <span>{{$t('m.Back')}}</span>
-        </div>
-        </Button>
-    </div>
-
-    
-
-    <div class="notice_detail" name="announcement-animate" mode="in-out">
+  <div>
+    <transition-group name="announcement-animate" mode="in-out">
       <div class="no-announcement" v-if="!announcements.length" key="no-announcement">
         <p>{{$t('m.No_Announcements')}}</p>
       </div>
-
-
       <template v-if="listVisible">
-        <div class="announcements-container" key="list">
-          <div v-for="announcement in announcements" :key="announcement.title">
-
-              <div class="title"><a @click="goAnnouncement(announcement)">
-                {{announcement.title}}</a></div>
-
-              <div class="date"><span>{{announcement.create_time | localtime }}</span></div>
-
-              <div class="creator"><span>{{$t('m.By')}} {{announcement.created_by.username}}</span></div>
-
-          </div>
-        </div>
-          <!-- <Pagination v-if="!isContest"
+        <ul class="announcements-container" key="list">
+          <li v-for="announcement in announcements" :key="announcement.title">
+            <div class="notice_img">
+              <img src="../../../../assets/notice.png" alt="">
+            </div>
+            <div class="message-info">
+              <div class="title" @click="goAnnouncement(announcement)">
+                {{announcement.title}}
+              </div>
+              <div class="date">{{announcement.create_time | localtime }}</div>
+              <div class="creator"> {{$t('m.By')}} {{announcement.created_by.username}}</div>
+            </div>
+            <Button class="button-detail" type="primary" shape="circle" @click="goAnnouncement(announcement)" >{{$t('m.Detail')}}</Button>
+          </li>
+        </ul>
+        <Pagination v-if="!isContest"
                     key="page"
                     :total="total"
                     :page-size="limit"
                     @on-change="getAnnouncementList">
-        </Pagination> -->
-        
+        </Pagination>
       </template>
+    </transition-group>
+    <Panel class="announcement-panel" v-if="!listVisible">
+      <div slot="title">
+        <div class="title-button">
+          <span>{{title}}</span>
+          <Button class="button-extra" type="primary" shape="circle" @click="goBack">
+            <div class="icon-text" >
+              <Icon type="ios-undo" class="icon"/>
+              <span>{{$t('m.Back')}}</span>
+            </div>
+            </Button>
+        </div>
+      </div>
+      <!-- <div slot="extra" class="padding20">
+        <Button class="button-extra" v-if="listVisible" type="primary" shape="circle" @click="init" :loading="btnLoading">{{$t('m.Refresh')}}</Button>
+      </div> -->
 
-      <template v-else>
-        <div v-katex v-html="announcement.content" key="content" class="announcement-container markdown-body"></div>
-      </template>
-    </div>
-
-    <div class="notice_btn" slot="extra">
-      <Button clsaa="btn" v-if="listVisible" type="primary" @click="init" :loading="btnLoading">{{$t('m.Refresh')}}</Button>
-      <Button clsaa="btn" v-else type="ghost" icon="ios-undo" @click="goBack">{{$t('m.Back')}}</Button>
-    </div>
-
+      <transition-group name="announcement-animate" mode="in-out">
+          <div v-katex v-html="announcement.content" key="content" class="content-container markdown-body"></div>
+      </transition-group>
   </Panel>
+  </div>
+  
 </template>
 
 <script>
@@ -67,8 +63,8 @@
     },
     data () {
       return {
-        limit: 10,
-        total: 10,
+        limit: 5,
+        total: 5,
         btnLoading: false,
         announcements: [],
         announcement: '',
@@ -130,6 +126,7 @@
 </script>
 <style lang="less">
   .announcement-container {
+    // 放scoped不生效
     p{
       opacity: 0.85;
       font-family: SourceHanSansCN-Regular;
@@ -148,7 +145,12 @@
 
 <style scoped lang="less">
 .announcement-panel{
-  padding-bottom: 10px;
+  padding: 20px;
+  .title-button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
   .button-extra{
     font-family: PingFangSC-Regular;
@@ -168,38 +170,49 @@
     margin-top: -10px;
     margin-bottom: 10px;
     li {
-      padding-top: 15px;
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+      padding: 32px 40px;
       list-style: none;
-      padding-bottom: 15px;
-      margin-left: 20px;
-      font-size: 16px;
-      border-bottom: 1px solid rgba(187, 187, 187, 0.5);
+      margin-bottom: 14px;
+      border-radius: 8px;
+      align-items: center;
+      .notice_img{
+        height: 87px;
+        margin-right: 40px;;
+      }
       &:last-child {
         border-bottom: none;
       }
-      .flex-container {
+      .message-info {
+        flex: 1;
+        text-align: left;
+        font-family: STYuanti-SC-Regular;
+        letter-spacing: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-weight: 400;
         .title {
-          flex: 1 1;
-          text-align: left;
-          padding-left: 10px;
-          a.entry {
-            color: #495060;
-            &:hover {
-              color: @color-theme;
-              border-bottom: 1px solid @color-theme;
-            }
+          font-size: 20px;
+          cursor: pointer;
+          &:hover {
+            color: @color-theme;
           }
         }
-        .creator {
-          flex: none;
-          width: 200px;
-          text-align: center;
-        }
         .date {
-          flex: none;
-          width: 200px;
-          text-align: center;
+          font-size: 14px;
+          color: #999999;
         }
+        .creator{
+          margin-top: 20px;
+          font-size: 16px;
+        }
+      }
+      .button-detail{
+        height: 40px;
+        padding: 0 40px;
       }
     }
   }
