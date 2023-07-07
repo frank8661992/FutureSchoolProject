@@ -8,6 +8,7 @@
         <CarouselItem v-for="(contest, index) of contests" :key="index">
           <div class="contest-content">
             <div class="contest-content-tags">
+              <div></div>
               <Button type="info" shape="circle" size="small" icon="calendar">
                 {{contest.start_time | localtime('YYYY-M-D HH:mm') }}
               </Button>

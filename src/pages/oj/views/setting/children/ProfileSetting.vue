@@ -1,14 +1,15 @@
 <template>
   <div class="setting-main">
-    <div class="section-title">{{$t('m.Avatar_Setting')}}</div>
+    <div class="section-title avatarsetting-class">{{$t('m.Avatar_Setting')}}</div>
     <template v-if="!avatarOption.imgSrc">
+      
       <Upload type="drag"
               class="mini-container"
               accept=".jpg,.jpeg,.png,.bmp,.gif"
               action=""
               :before-upload="handleSelectFile">
-        <div style="padding: 30px 0">
-          <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+        <div style="padding: 20px 0">
+          <img class="avatar" src="../../../../../assets/group.png"/>
           <p>Drop here, or click to select manually</p>
         </div>
       </Upload>
@@ -62,20 +63,21 @@
       </div>
     </Modal>
 
-    <div class="section-title">{{$t('m.Profile_Setting')}}</div>
+    <div class="section-title profilesetting-class">{{$t('m.Profile_Setting')}}</div>
+
     <Form ref="formProfile" :model="formProfile">
-      <Row type="flex" :gutter="30" justify="space-around">
+      <Row class="inputrow-class" type="flex"  justify="space-around">
         <Col :span="11">
-          <FormItem label="Real Name">
-            <Input v-model="formProfile.real_name"/>
+          <FormItem class="itemname-class" label="Real Name">
+            <Input  v-model="formProfile.real_name"/>
           </FormItem>
-          <Form-item label="School">
-            <Input v-model="formProfile.school"/>
+          <Form-item class="itemname-class" label="School">
+            <Input  v-model="formProfile.school"/>
           </Form-item>
-          <Form-item label="Major">
+          <Form-item class="itemname-class" label="Major">
             <Input v-model="formProfile.major"/>
           </Form-item>
-          <FormItem label="Language">
+          <FormItem class="itemname-class" label="Language">
             <Select v-model="formProfile.language">
               <Option v-for="lang in languages" :key="lang.value" :value="lang.value">{{lang.label}}</Option>
             </Select>
@@ -86,13 +88,13 @@
         </Col>
 
         <Col :span="11">
-          <Form-item label="Mood">
-            <Input v-model="formProfile.mood"/>
+          <Form-item class="itemname-class" label="Mood">
+            <Input  v-model="formProfile.mood"/>
           </Form-item>
-          <Form-item label="Blog">
+          <Form-item class="itemname-class" label="Blog">
             <Input v-model="formProfile.blog"/>
           </Form-item>
-          <Form-item label="Github">
+          <Form-item class="itemname-class" label="Github">
             <Input v-model="formProfile.github"/>
           </Form-item>
         </Col>
@@ -253,6 +255,28 @@
     display: inline-block;
   }
 
+  .avatarsetting-class {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top:30px;
+
+  }
+
+  .profilesetting-class {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top:35px;
+  }
+
+  .inputrow-class {
+    margin-left: -13px;
+    margin-top: 16px;
+    .itemname-class {
+      font-size: 14px;
+    }
+    
+  }
+  
   .copper-img {
     width: 400px;
     height: 300px;

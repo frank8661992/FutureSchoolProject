@@ -3,10 +3,12 @@
     <Card :padding="0">
       <div class="flex-container">
         <div class="menu">
+          
           <Menu accordion @on-select="goRoute" :activeName="activeName" style="text-align: center;" width="auto">
             <div class="avatar-editor">
               <div class="avatar-container">
-                <img class="avatar" :src="profile.avatar"/>
+                
+                <img class="avatar" src="../../../../assets/bg2-setting.png"/>
                 <div class="avatar-mask">
                   <a @click.stop="goRoute({name: 'profile-setting'})">
                     <div class="mask-content">
@@ -15,14 +17,20 @@
                     </div>
                   </a>
                 </div>
+                <div class="headline1"><span>马萨拉蒂</span></div>
+                <div class="headline2"><span>海纳百川 有容乃大</span></div>
               </div>
+              <div class="line"></div>
+
             </div>
 
-            <Menu-item name="/setting/profile">{{$t('m.Profile')}}</Menu-item>
+            <Menu-item name="/setting/profile" class="profile-class">{{$t('m.Profile')}}</Menu-item>
             <Menu-item name="/setting/account">{{$t('m.Account')}}</Menu-item>
+            <Menu-item name="/setting/security">{{$t('m.Security')}}</Menu-item>
             <Menu-item name="/setting/security">{{$t('m.Security')}}</Menu-item>
           </Menu>
         </div>
+        
         <div class="panel">
           <transition name="fadeInUp">
             <router-view></router-view>
@@ -62,12 +70,35 @@
 
   .flex-container {
     .menu {
-      flex: 1 0 150px;
-      max-width: 250px;
+      flex: 1 0 30%;
+      max-width: 30%;
+      .profile-class {
+       margin-top:-15px;
+      //  background-color:red;
+      }
       .avatar-editor {
-        padding: 10% 22%;
+        padding: 8% 22%;
         margin-bottom: 10px;
+        .line {
+            margin-left:-44px;
+            margin-top: 16px;
+            width: 258px;
+            opacity:1;
+            border-bottom: 1px dashed #E8E8E8;
+            background-repeat: repeat-x;
+          }
         .avatar-container {
+          .headline1 {
+            color: black;
+            font-family:  "黑体", Arial, sans-serif;
+            font-size: 22px;
+            font-weight: 400;
+            margin-top:16px;
+          }
+          .headline2 {
+            margin-top:4px;
+            font-size: 14px;
+          }
           &:hover {
             .avatar-mask {
               opacity: .5;
@@ -75,20 +106,19 @@
           }
           position: relative;
           .avatar {
-            width: 100%;
-            height: auto;
-            max-width: 100%;
-            display: block;
+            height: 106px;
+            width: 106px;
             border-radius: @avatar-radius;
-            box-shadow: 0px 0px 1px 0px;
           }
           .avatar-mask {
             transition: opacity .2s ease-in;
             z-index: 1;
+            height: 106px;
+            width: 106px;
             border-radius: @avatar-radius;
             position: absolute;
             top: 0;
-            left: 0;
+            left: 29px;
             right: 0;
             bottom: 0;
             background: black;
@@ -107,6 +137,7 @@
               }
             }
           }
+          
         }
       }
 
@@ -139,12 +170,14 @@
   .setting-main {
     position: relative;
     margin: 10px 40px;
-    padding-bottom: 20px;
+    padding-bottom: 80px;
     .setting-content {
       margin-left: 20px;
     }
     .mini-container {
-      width: 500px;
+      width: 310px;
+      height: 100px;
+      margin-top: 30px;
     }
   }
 </style>

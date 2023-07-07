@@ -13,33 +13,46 @@
         </Button>
     </div>
 
-    <transition-group name="announcement-animate" mode="in-out">
+    
+
+    <div class="notice_detail" name="announcement-animate" mode="in-out">
       <div class="no-announcement" v-if="!announcements.length" key="no-announcement">
         <p>{{$t('m.No_Announcements')}}</p>
       </div>
+
+
       <template v-if="listVisible">
-        <ul class="announcements-container" key="list">
-          <li v-for="announcement in announcements" :key="announcement.title">
-            <div class="flex-container">
-              <div class="title"><a class="entry" @click="goAnnouncement(announcement)">
+        <div class="announcements-container" key="list">
+          <div v-for="announcement in announcements" :key="announcement.title">
+
+              <div class="title"><a @click="goAnnouncement(announcement)">
                 {{announcement.title}}</a></div>
-              <div class="date">{{announcement.create_time | localtime }}</div>
-              <div class="creator"> {{$t('m.By')}} {{announcement.created_by.username}}</div>
-            </div>
-          </li>
-        </ul>
-        <Pagination v-if="!isContest"
+
+              <div class="date"><span>{{announcement.create_time | localtime }}</span></div>
+
+              <div class="creator"><span>{{$t('m.By')}} {{announcement.created_by.username}}</span></div>
+
+          </div>
+        </div>
+          <!-- <Pagination v-if="!isContest"
                     key="page"
                     :total="total"
                     :page-size="limit"
                     @on-change="getAnnouncementList">
-        </Pagination>
+        </Pagination> -->
+        
       </template>
 
       <template v-else>
         <div v-katex v-html="announcement.content" key="content" class="announcement-container markdown-body"></div>
       </template>
-    </transition-group>
+    </div>
+
+    <div class="notice_btn" slot="extra">
+      <Button clsaa="btn" v-if="listVisible" type="primary" @click="init" :loading="btnLoading">{{$t('m.Refresh')}}</Button>
+      <Button clsaa="btn" v-else type="ghost" icon="ios-undo" @click="goBack">{{$t('m.Back')}}</Button>
+    </div>
+
   </Panel>
 </template>
 
