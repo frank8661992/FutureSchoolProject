@@ -1,5 +1,5 @@
 <template>
-  <Panel>
+  <Panel class="announcement-panel">
     <div slot="title" class="font-size-18">
       {{title}}
     </div>
@@ -134,6 +134,9 @@
 </style>
 
 <style scoped lang="less">
+.announcement-panel{
+  padding-bottom: 10px;
+}
   .button-extra{
     font-family: PingFangSC-Regular;
     font-size: 14px;
