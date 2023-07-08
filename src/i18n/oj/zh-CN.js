@@ -259,5 +259,9 @@ export const m = {
   UserHomeScore: '分数',
   List_Solved_Problems: '已解决问题的列表',
   UserHomeIntro: '这个家伙太懒了，还没有做题呢...',
-  Detail: '详情'
+  Detail: '详情',
+
+  MyTodoList: '我的待办',
+  Average_task_processing_time_for_the_week: '本周任务平均处理时间',
+  Completed_tasks_for_the_week: '本周完成任务数'
 }
