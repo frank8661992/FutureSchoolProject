@@ -23,8 +23,6 @@
         </Form>
       </div>
 
-      <div class="middle separator"></div>
-
       <div class="right">
         <p class="section-title">{{$t('m.ChangeEmail')}}</p>
         <Form class="setting-content" ref="formEmail" :model="formEmail" :rules="ruleEmail">

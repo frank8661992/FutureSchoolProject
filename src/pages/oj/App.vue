@@ -11,8 +11,8 @@
       </transition>
     </div>
     <div class="footer">
-      <p v-html="website.website_footer"></p>
-      <p>Powered by <a href="https://github.com/QingdaoU/OnlineJudge">OnlineJudge</a>
+      <p v-html="website.website_footer" class="main-footer"></p>
+      <p class="sub-footer">Powered by OnlineJudge
         <span v-if="version">&nbsp; Version: {{ version }}</span>
       </p>
     </div>
@@ -98,6 +98,9 @@
   }
 
   .footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 60px;
     text-align: center;
     font-size: small;
@@ -105,6 +108,18 @@
     position:fixed;
     bottom: 0;
     width: 100%;
+    letter-spacing: 0;
+
+    .main-footer{
+      font-size: 16px;
+      color: #000000;
+      font-weight: 600;
+    }
+    .sub-footer{
+      font-size: 14px;
+      color: #666666;
+      font-weight: 400;
+    }
   }
 
   .fadeInUp-enter-active {

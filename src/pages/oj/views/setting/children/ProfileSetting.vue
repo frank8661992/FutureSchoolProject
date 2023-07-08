@@ -258,7 +258,6 @@
   .avatarsetting-class {
     font-size: 20px;
     font-weight: 600;
-    margin-top:30px;
 
   }
 

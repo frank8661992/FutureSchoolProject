@@ -167,15 +167,13 @@
 
 <style lang="less">
   .setting-main {
-    position: relative;
-    margin: 10px 40px;
-    padding-bottom: 80px;
-    .setting-content {
-      margin-left: 20px;
+    padding: 24px 40px;
+    min-height: 450px;
+    .setting-content{
+      margin-top: 20px;
     }
     .mini-container {
       width: 310px;
-      height: 100px;
       margin-top: 30px;
     }
   }

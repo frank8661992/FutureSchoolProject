@@ -2,17 +2,19 @@
   <div class="setting-main">
     <p class="section-title">{{$t('m.Sessions')}}</p>
     <div class="flex-container setting-content">
-      <template v-for="session in sessions">
-        <Card :padding="20" class="flex-child">
-          <span slot="title" style="line-height: 20px">{{session.ip}}</span>
-          <div slot="extra">
-            <Tag v-if="session.current_session" color="green">Current</Tag>
-            <Button v-else
-                    type="warning"
-                    size="small"
-                    @click="deleteSession(session.session_key)">Revoke
-            </Button>
+        <Card class="flex-child"  v-for="(session,i) in sessions" :key="i">
+          <div slot="title" class="security-card">
+            <span>{{session.ip}}</span>
+            <div slot="btn">
+              <Tag v-if="session.current_session" color="green">Current</Tag>
+              <Button v-else
+                      type="warning"
+                      size="small"
+                      @click="deleteSession(session.session_key)">Revoke
+              </Button>
+            </div>
           </div>
+          
           <Form :label-width="100">
             <FormItem label="OS :" class="item">
               {{session.user_agent | platform}}
@@ -25,7 +27,6 @@
             </FormItem>
           </Form>
         </Card>
-      </template>
     </div>
 
     <p class="section-title">{{$t('m.Two_Factor_Authentication')}}</p>
@@ -209,8 +210,14 @@
       max-width: 350px;
       margin-right: 30px;
       margin-bottom: 30px;
+      padding: 20px;
       .item {
         margin-bottom: 0;
+      }
+      .security-card{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
       }
     }
   }

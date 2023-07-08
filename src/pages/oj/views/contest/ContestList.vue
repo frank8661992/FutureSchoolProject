@@ -70,8 +70,8 @@
             </Col>
             <Col class="status-wrapper" style="text-align: center">
               <Tag  
-                type="dot" 
                 :color="CONTEST_STATUS_REVERSE[contest.status].color"
+                :type="CONTEST_STATUS_REVERSE[contest.status].type"
                 class="status-tag"
               >
                 {{$t('m.' + CONTEST_STATUS_REVERSE[contest.status].name.replace(/ /g, "_"))}}
@@ -256,6 +256,10 @@
           .status-tag{
             cursor:default;
             width: 120px;
+            height: 40px;
+            border-radius: 20px;
+            line-height: 40px;
+            
           }
         }
       }
