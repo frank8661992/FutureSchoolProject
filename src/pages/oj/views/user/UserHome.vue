@@ -20,16 +20,16 @@
 
         <div class="flex-container">
           <div class="left">
-            <p class="title-left">{{$t('m.UserHomeSolved')}}</p>
-            <p class="emphasis">{{profile.accepted_number}}</p>
+            <p class="title-left">{{$t('m.MyTodoList')}}</p>
+            <p class="emphasis">{{profile.accepted_number}}<span>个任务</span></p>
           </div>
           <div class="middle">
-            <p class="title-middle">{{$t('m.UserHomeserSubmissions')}}</p>
-            <p class="emphasis">{{profile.submission_number}}</p>
+            <p class="title-middle">{{$t('m.Average_task_processing_time_for_the_week')}}</p>
+            <p class="emphasis">{{profile.submission_number}}<span>分钟</span></p>
           </div>
           <div class="right">
-            <p class="title-right">{{$t('m.UserHomeScore')}}</p>
-            <p class="emphasis">{{profile.total_score}}</p>
+            <p class="title-right">{{$t('m.Completed_tasks_for_the_week')}}</p>
+            <p class="emphasis">{{profile.total_score}}<span>个任务</span></p>
           </div>
         </div>
       

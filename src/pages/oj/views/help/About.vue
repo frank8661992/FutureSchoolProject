@@ -16,17 +16,17 @@
       <div slot="title">{{$t('m.Result_Explanation')}}</div>
       <div class="result-content">
         <ul>
-          <li><b>{{$t('m.Pending')}} & {{$t('m.Judging')}}</b>: <b class="resultExpContentDiv">{{$t('m.Pending_Judging_Description')}}</b></li>
-          <li><b>{{$t('m.Compile_Error')}}</b>: <b class="resultExpContentDiv">{{$t('m.Compile_Error_Description')}}</b></li>
-          <li><b>{{$t('m.Accepted')}}</b>:	<b class="resultExpContentDiv">{{$t('m.Accepted_Description')}}</b></li>
-          <li><b>{{$t('m.Wrong_Answer')}}</b>:	<b class="resultExpContentDiv">{{$t('m.Wrong_Answer_Description')}}</b></li>
+          <li><b>{{$t('m.Pending')}} & {{$t('m.Judging')}}</b>: <span class="resultExpContentDiv">{{$t('m.Pending_Judging_Description')}}</span></li>
+          <li><b>{{$t('m.Compile_Error')}}</b>: <span class="resultExpContentDiv">{{$t('m.Compile_Error_Description')}}</span></li>
+          <li><b>{{$t('m.Accepted')}}</b>:	<span class="resultExpContentDiv">{{$t('m.Accepted_Description')}}</span></li>
+          <li><b>{{$t('m.Wrong_Answer')}}</b>:	<span class="resultExpContentDiv">{{$t('m.Wrong_Answer_Description')}}</span></li>
           <li>
-            <b>{{$t('m.Runtime_Error')}}</b>:	<b class="resultExpContentDiv">{{$t('m.Runtime_Error_Description')}}</b>
+            <b>{{$t('m.Runtime_Error')}}</b>:	<span class="resultExpContentDiv">{{$t('m.Runtime_Error_Description')}}</span>
           </li>
-          <li><b>{{$t('m.Time_Limit_Exceeded')}}</b>:	<b class="resultExpContentDiv">{{$t('m.Time_Limit_Exceeded_Description')}}</b>
+          <li><b>{{$t('m.Time_Limit_Exceeded')}}</b>:	<span class="resultExpContentDiv">{{$t('m.Time_Limit_Exceeded_Description')}}</span>
           </li>
-          <li><b>{{$t('m.Memory_Limit_Exceeded')}}</b>:	<b class="resultExpContentDiv">{{$t('m.Memory_Limit_Exceeded_Description')}}</b></li>
-          <li><b>{{$t('m.System_Error')}}</b>: <b class="resultExpContentDiv">{{$t('m.System_Error_Description')}}</b>
+          <li><b>{{$t('m.Memory_Limit_Exceeded')}}</b>:	<span class="resultExpContentDiv">{{$t('m.Memory_Limit_Exceeded_Description')}}</span></li>
+          <li><b>{{$t('m.System_Error')}}</b>: <span class="resultExpContentDiv">{{$t('m.System_Error_Description')}}</span>
           </li>
         </ul>
       </div>
