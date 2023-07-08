@@ -34,14 +34,15 @@
         </div>
       
         <div id="icons">
-          
-            <img class="githublogo" src="../../../../assets/githublogo22px.png" alt="">
-       
-          
-            <img class="letterlogo" src="../../../../assets/letter22px.png" alt="">
-          
-         
-            <img class="multilogo" src="../../../../assets/multi-language22px.png" alt="">
+          <a :href="profile.github" class="noBlue">
+            <Icon type="social-github-outline" size="30"></Icon>
+          </a>
+          <a :href="'mailto:'+ profile.user.email" class="noBlue">
+            <Icon class="icon" type="ios-email-outline" size="30"></Icon>
+          </a>
+          <a :href="profile.blog" class="noBlue">
+            <Icon class="icon" type="ios-world-outline" size="30"></Icon>
+          </a>
         </div>
       </div>
     </Card>
@@ -224,6 +225,13 @@
         // margin-top: 30px;
       }
     }
-    
+    .noBlue{
+      color: #635e5e;
+      width: 35px;
+      margin-right: 16px;
+      &:hover{
+        color: @color-theme;
+      }
+    }
 }
 </style>
