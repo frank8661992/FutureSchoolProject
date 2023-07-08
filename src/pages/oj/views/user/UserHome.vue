@@ -1,8 +1,7 @@
 <template>
   <div class="container">
     <div class="avatar-container">
-      <img class="avatar" src="../../../../assets/bg2-setting.png"/>
-
+      <img class="avatar" :src="profile.avatar"/>
     </div>
 
     <Card class="cardDiv">
