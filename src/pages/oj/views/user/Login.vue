@@ -17,7 +17,7 @@
         </Input>
       </FormItem>
     </Form>
-    <div class="footer">
+    <div class="login-footer">
       <Button
         type="primary"
         @click="handleLogin"
@@ -26,6 +26,7 @@
         {{$t('m.UserLogin')}}
       </Button>
       <a v-if="website.allow_register" @click.stop="handleBtnClick('register')">{{$t('m.No_Account')}}</a>
+      <!-- <span style="float: right">{{$t('m.Please_contact_the_admin_if_you_forget_password')}}</span> -->
       <a @click.stop="goResetPassword" style="float: right">{{$t('m.Forget_Password')}}</a>
     </div>
   </div>
@@ -112,7 +113,7 @@
 </script>
 
 <style scoped lang="less">
-  .footer {
+  .login-footer {
     overflow: auto;
     margin-top: 20px;
     margin-bottom: -15px;

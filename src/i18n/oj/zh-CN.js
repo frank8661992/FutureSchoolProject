@@ -263,5 +263,6 @@ export const m = {
 
   MyTodoList: '我的待办',
   Average_task_processing_time_for_the_week: '本周任务平均处理时间',
-  Completed_tasks_for_the_week: '本周完成任务数'
+  Completed_tasks_for_the_week: '本周完成任务数',
+  Please_contact_the_admin_if_you_forget_password: '忘记密码，请联系管理员'
 }
