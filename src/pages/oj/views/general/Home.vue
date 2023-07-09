@@ -69,12 +69,13 @@
 
 <style lang="less" scoped>
   .contest {
+    margin-bottom: 24px;
+    border-radius: 8px;
     &-title {
-      font-style: italic;
-      font-size: 21px;
+      font-size: 20px;
     }
     &-content {
-      padding: 0 70px 40px 70px;
+      padding: 0 60px 40px 60px;
       &-description {
         margin-top: 25px;
       }

@@ -80,6 +80,7 @@ function downloadFile (url) {
 
 function getLanguages () {
   return new Promise((resolve, reject) => {
+    debugger
     let languages = storage.get(STORAGE_KEY.languages)
     if (languages) {
       resolve(languages)

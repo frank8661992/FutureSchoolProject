@@ -6,7 +6,7 @@ import { CONTEST_STATUS, USER_TYPE, CONTEST_TYPE } from '@/utils/constants'
 const state = {
   now: moment(),
   access: false,
-  rankLimit: 30,
+  rankLimit: 10,
   forceUpdate: false,
   contest: {
     created_by: {},
