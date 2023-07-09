@@ -16,8 +16,8 @@
                     </div>
                   </a>
                 </div>
-                <div class="headline1"><span>马萨拉蒂</span></div>
-                <div class="headline2"><span>海纳百川 有容乃大</span></div>
+                <div class="headline1"><span>{{profile.user && profile.user.username}}</span></div>
+                <div class="headline2" v-if="profile.mood"><span>{{profile.mood}}</span></div>
               </div>
               <div class="line"></div>
 

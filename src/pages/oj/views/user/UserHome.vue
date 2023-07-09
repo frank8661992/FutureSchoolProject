@@ -11,11 +11,7 @@
           <span v-if="profile.user" class="emphasis-name">{{profile.user.username}}</span>
           <span v-if="profile.school">@{{profile.school}}</span>
         </p>
-        <div class="headline2"><span>海纳百川，有容乃大</span></div>
-
-        <p v-if="profile.mood">
-          {{profile.mood}}
-        </p>
+        <div v-if="profile.mood" class="headline2"><span>{{profile.mood}}</span></div>
         <hr id="split"/>
 
         <div class="flex-container">
