@@ -253,14 +253,6 @@
         }
         .status-wrapper{
           padding-left: 32px;
-          .status-tag{
-            cursor:default;
-            width: 120px;
-            height: 40px;
-            border-radius: 20px;
-            line-height: 40px;
-            
-          }
         }
       }
     }

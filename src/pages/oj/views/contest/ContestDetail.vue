@@ -14,9 +14,13 @@
                 {{contest.title}}
               </div>
               <div slot="extra">
-                <Tag type="dot" :color="countdownColor">
-                  <span id="countdown">{{countdown}}</span>
-                </Tag>
+              <Tag v-if="contestStatus && CONTEST_STATUS_REVERSE[contestStatus]"
+                :color="CONTEST_STATUS_REVERSE[contestStatus].color"
+                :type="CONTEST_STATUS_REVERSE[contestStatus].type"
+                class="status-tag"
+              >
+                <span id="countdown">{{countdown}}</span>
+              </Tag>
               </div>
               <div v-html="contest.description" class="markdown-body"></div>
               <div v-if="passwordFormVisible" class="contest-password">
@@ -33,41 +37,41 @@
 
     </div>
     <div v-show="showMenu" id="contest-menu">
-      <VerticalMenu @on-click="handleRoute">
-        <VerticalMenu-item :route="{name: 'contest-details', params: {contestID: contestID}}">
-          <Icon type="home"></Icon>
+      <VerticalMenu @on-click="handleRoute" class="vertical-menu">
+        <VerticalMenu-item class="vertical-menu-item" :route="{name: 'contest-details', params: {contestID: contestID}}">
+          <img src="../../../../assets/home.png" class="icon-item"/>
           {{$t('m.Overview')}}
         </VerticalMenu-item>
 
-        <VerticalMenu-item :disabled="contestMenuDisabled"
+        <VerticalMenu-item class="vertical-menu-item" :disabled="contestMenuDisabled"
                            :route="{name: 'contest-announcement-list', params: {contestID: contestID}}">
-          <Icon type="chatbubble-working"></Icon>
+          <img src="../../../../assets/message2.svg" class="icon-item"/>
           {{$t('m.Announcements')}}
         </VerticalMenu-item>
 
-        <VerticalMenu-item :disabled="contestMenuDisabled"
+        <VerticalMenu-item class="vertical-menu-item" :disabled="contestMenuDisabled"
                            :route="{name: 'contest-problem-list', params: {contestID: contestID}}">
-          <Icon type="ios-photos"></Icon>
+          <img src="../../../../assets/problem-info.svg" class="icon-item"/>
           {{$t('m.Problems')}}
         </VerticalMenu-item>
 
-        <VerticalMenu-item v-if="OIContestRealTimePermission"
+        <VerticalMenu-item class="vertical-menu-item" v-if="OIContestRealTimePermission"
                            :disabled="contestMenuDisabled"
                            :route="{name: 'contest-submission-list'}">
-          <Icon type="navicon-round"></Icon>
+          <img src="../../../../assets/submit.svg" class="icon-item"/>
           {{$t('m.Submissions')}}
         </VerticalMenu-item>
 
-        <VerticalMenu-item v-if="OIContestRealTimePermission"
+        <VerticalMenu-item class="vertical-menu-item" v-if="OIContestRealTimePermission"
                            :disabled="contestMenuDisabled"
                            :route="{name: 'contest-rank', params: {contestID: contestID}}">
-          <Icon type="stats-bars"></Icon>
+          <img src="../../../../assets/rank2.svg" class="icon-item"/>
           {{$t('m.Rankings')}}
         </VerticalMenu-item>
 
-        <VerticalMenu-item v-if="showAdminHelper"
+        <VerticalMenu-item class="vertical-menu-item" v-if="showAdminHelper"
                            :route="{name: 'acm-helper', params: {contestID: contestID}}">
-          <Icon type="ios-paw"></Icon>
+          <img src="../../../../assets/setting.svg" class="icon-item"/>
           {{$t('m.Admin_Helper')}}
         </VerticalMenu-item>
       </VerticalMenu>
@@ -89,6 +93,7 @@
     data () {
       return {
         CONTEST_STATUS: CONTEST_STATUS,
+        CONTEST_STATUS_REVERSE: CONTEST_STATUS_REVERSE,
         route_name: '',
         btnLoading: false,
         contestID: '',
@@ -217,6 +222,14 @@
       flex: none;
       width: 210px;
       margin-left: 20px;
+      .vertical-menu-item{
+        display: flex;
+        align-items: center;
+        .icon-item{
+          width: 18px;
+          margin-right: 10px;
+        }
+      }
     }
     .contest-password {
       margin-top: 20px;

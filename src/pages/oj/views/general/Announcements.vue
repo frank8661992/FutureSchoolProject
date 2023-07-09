@@ -225,4 +225,11 @@
   .announcement-animate-enter-active {
     animation: fadeIn 1s;
   }
+  .content-container {
+    opacity: 0.85 ;
+    font-size: 16px !important;
+    color: #666666;
+    line-height: 20px !important;
+    font-weight: 400 !important;
+  }
 </style>
