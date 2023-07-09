@@ -252,6 +252,8 @@ export const m = {
   Partial_Accepted: 'Partial Accepted',
   Compile_Error: 'Compile Error',
   Rejudge: 'Rejudge',
+  Detail: 'Detail',
+  Search: 'Search',
   // UserHome.vue
   UserHomeSolved: 'Solved',
   UserHomeserSubmissions: 'Submissions',

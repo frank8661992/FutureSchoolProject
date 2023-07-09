@@ -131,7 +131,6 @@
           legend: {
             data: [this.$i18n.t('m.AC'), this.$i18n.t('m.Total')],
             left: '0%',
-            top: -5,
             itemWidth: 8,
             itemHeight: 8,
             itemGap: 20
@@ -144,8 +143,8 @@
             show: true,
             emphasis: {
               iconStyle: {
-                color: this.mainColor,
-                borderColor: this.mainColor
+                color: '#5363ED',
+                borderColor: '#5363ED'
               }
             },
             feature: {
@@ -153,7 +152,7 @@
               dataView: {
                 show: true,
                 readOnly: true,
-                buttonColor: this.mainColor
+                buttonColor: '#5363ED'
               },
               magicType: {
                 show: true,
@@ -168,8 +167,7 @@
                 icon: 'path://M840.5 900.3h-657c-16.5 0-29.9 13.4-29.9 29.9s13.4 29.9 29.9 29.9h657.1c16.5 0 29.9-13.4 29.9-29.9-0.1-16.6-13.5-29.9-30-29.9zM631.5 123.7V541.8H763.1L512 769.9l-251.2-228h131.7V123.7h239m0-59.7h-239c-33 0-59.7 26.7-59.7 59.7v358.4H183.5c-26.6 0-39.9 32.2-21.1 51l328.5 298.2c5.8 5.8 13.5 8.7 21.1 8.7s15.3-2.9 21.1-8.7l328.5-298.2c18.8-18.8 5.5-51-21.1-51H691.2V123.7c0-33-26.7-59.7-59.7-59.7z'
               }
             },
-            right: '2%',
-            top: -5,
+            right: '4%',
             itemSize: 11
           },
           calculable: true,
