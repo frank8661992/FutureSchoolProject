@@ -30,13 +30,13 @@
         </div>
       
         <div id="icons">
-          <a :href="profile.github" class="noBlue">
+          <a v-if="profile.github" :href="profile.github" class="noBlue">
             <Icon type="social-github-outline" size="30"></Icon>
           </a>
-          <a :href="'mailto:'+ profile.user.email" class="noBlue">
+          <a v-if="profile.user.emai" :href="'mailto:'+ profile.user.email" class="noBlue">
             <Icon class="icon" type="ios-email-outline" size="30"></Icon>
           </a>
-          <a :href="profile.blog" class="noBlue">
+          <a v-if="profile.blog" :href="profile.blog" class="noBlue">
             <Icon class="icon" type="ios-world-outline" size="30"></Icon>
           </a>
         </div>
