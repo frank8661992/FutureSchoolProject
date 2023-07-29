@@ -126,7 +126,7 @@
           {
             title: this.$i18n.t('m.Creator'),
             render: (h, data) => {
-              return h('span', data.row.created_by.username)
+              return h('span', '管理员')
             }
           }
         ]

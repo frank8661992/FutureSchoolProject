@@ -15,7 +15,7 @@
                 {{announcement.title}}
               </div>
               <div class="date">{{announcement.create_time | localtime }}</div>
-              <div class="creator"> {{$t('m.By')}} {{announcement.created_by.username}}</div>
+              <div class="creator"> {{$t('m.By')}}<span>:</span> 管理员</div>
             </div>
             <Button class="button-detail" type="primary" shape="circle" @click="goAnnouncement(announcement)" >{{$t('m.Detail')}}</Button>
           </li>

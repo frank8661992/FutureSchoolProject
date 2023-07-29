@@ -63,9 +63,8 @@
             </p>
             <div class="detail">
               <span v-if="contest.created_by && contest.created_by.username" class="creator">
-                {{$t('m.Creator')}}:{{contest.created_by.username}}
+                {{$t('m.Creator')}}:管理员
               </span>
-              <span  class="rule-tag">{{contest.rule_type}}</span>
             </div>
             </Col>
             <Col class="status-wrapper" style="text-align: center">

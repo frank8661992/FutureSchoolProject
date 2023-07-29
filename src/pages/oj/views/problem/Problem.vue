@@ -163,7 +163,7 @@
           </li>
           <li>
             <p>{{$t('m.Created')}}</p>
-            <p>{{problem.created_by.username}}</p>
+            <p>管理员</p>
           </li>
           <li v-if="problem.difficulty">
             <p>{{$t('m.Level')}}</p>
@@ -193,7 +193,7 @@
             <img src="../../../../assets/count.svg" class="icon-img w19"/>  
             <span class="menu-title">{{$t('m.Statistic')}}</span>
           </div>
-          <Button type="ghost" shape="circle" @click="graphVisible = !graphVisible">Details</Button>
+          <Button type="ghost" shape="circle" @click="graphVisible = !graphVisible"><span>详情</span></Button>
         </div>
         <div class="echarts">
           <ECharts :options="pie"></ECharts>
@@ -331,8 +331,8 @@
         }
         let acNum = problemData.accepted_number
         let data = [
-          {name: 'WA', value: problemData.submission_number - acNum},
-          {name: 'AC', value: acNum}
+          {name: '错误', value: problemData.submission_number - acNum},
+          {name: '正确', value: acNum}
         ]
         this.pie.series[0].data = data
         // 只把大图的AC selected下，这里需要做一下deepcopy
@@ -341,9 +341,9 @@
         this.largePie.series[1].data = data2
 
         // 根据结果设置legend,没有提交过的legend不显示
-        let legend = Object.keys(problemData.statistic_info).map(ele => JUDGE_STATUS[ele].short)
+        let legend = Object.keys(problemData.statistic_info).map(ele => JUDGE_STATUS[ele].name)
         if (legend.length === 0) {
-          legend.push('AC', 'WA')
+          legend.push('正确', '错误')
         }
         this.largePie.legend.data = legend
 
@@ -353,9 +353,9 @@
 
         let largePieData = []
         Object.keys(problemData.statistic_info).forEach(ele => {
-          largePieData.push({name: JUDGE_STATUS[ele].short, value: problemData.statistic_info[ele]})
+          largePieData.push({name: JUDGE_STATUS[ele].name, value: problemData.statistic_info[ele]})
         })
-        largePieData.push({name: 'AC', value: acCount})
+        largePieData.push({name: '正确', value: acCount})
         this.largePie.series[0].data = largePieData
       },
       handleRoute (route) {

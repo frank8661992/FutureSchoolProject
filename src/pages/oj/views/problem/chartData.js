@@ -1,11 +1,11 @@
 const pieColorMap = {
-  'AC': {color: '#5363ED'},
-  'WA': {color: '#53C2ED'},
-  'TLE': {color: '#ff9300'},
-  'MLE': {color: '#f7de00'},
-  'RE': {color: '#ff6104'},
-  'CE': {color: '#f7ac04'},
-  'PAC': {color: '#2d8cf0'}
+  '正确': {color: '#5363ED'},
+  '错误': {color: '#53C2ED'},
+  '超时': {color: '#ff9300'},
+  '超出内存限制': {color: '#f7de00'},
+  '运行时出错': {color: '#ff6104'},
+  '编译错误': {color: '#f7ac04'},
+  '部分正确': {color: '#2d8cf0'}
 }
 
 const legendStyle = {
@@ -23,7 +23,7 @@ function getItemColor (obj) {
 const pie = {
   legend: {
     ...legendStyle,
-    data: ['AC', 'WA']
+    data: ['正确', '错误']
   },
   series: [
     {
@@ -39,8 +39,8 @@ const pie = {
         }
       },
       data: [
-        {value: 0, name: 'WA'},
-        {value: 0, name: 'AC'}
+        {value: 0, name: '错误'},
+        {value: 0, name: '正确'}
       ],
       label: {
         normal: {
@@ -60,7 +60,7 @@ const largePie = {
   legend: {
     ...legendStyle,
     data:
-      ['AC', 'RE', 'WA', 'TLE', 'PAC', 'MLE']
+      ['正确', '运行时出错', '错误', '超时', '部分正确', '超出内存限制']
   },
   series: [
     {
@@ -73,9 +73,9 @@ const largePie = {
       },
       data: [
         {value: 0, name: 'RE'},
-        {value: 0, name: 'WA'},
+        {value: 0, name: '错误'},
         {value: 0, name: 'TLE'},
-        {value: 0, name: 'AC'},
+        {value: 0, name: '正确'},
         {value: 0, name: 'MLE'},
         {value: 0, name: 'PAC'}
       ],
@@ -97,8 +97,8 @@ const largePie = {
         normal: {color: getItemColor}
       },
       data: [
-        {value: '0', name: 'WA'},
-        {value: 0, name: 'AC', selected: true}
+        {value: '0', name: '错误'},
+        {value: 0, name: '正确', selected: true}
       ],
       label: {
         normal: {

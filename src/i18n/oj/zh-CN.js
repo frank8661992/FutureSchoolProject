@@ -64,9 +64,9 @@ export const m = {
   Not_Checked: '未检查',
   Check_It: '现在检查',
   // ACMRank.vue
-  ACM_Ranklist: 'ACM 排名',
+  ACM_Ranklist: '比赛排名',
   mood: '格言',
-  AC: 'AC',
+  AC: '通过数',
   Rating: '评分',
   // Announcements.vue
   Contest_Announcements: '比赛公告',
@@ -149,7 +149,7 @@ export const m = {
   Contests: '练习&比赛',
   NavStatus: '状态',
   Rank: '排名',
-  ACM_Rank: 'ACM 排名',
+  ACM_Rank: '比赛排名',
   OI_Rank: 'OI 排名',
   About: '关于',
   Judger: '评分器',
@@ -202,7 +202,7 @@ export const m = {
   Reset: '重置',
   Pick_One: '随机选择问题',
   Difficulty: '难度',
-  Total: '总数',
+  Total: '提交数',
   AC_Rate: '通过率',
   // Register.vue
   RegisterUsername: '用户名',

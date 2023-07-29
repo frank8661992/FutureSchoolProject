@@ -19,7 +19,7 @@
             <p>Start Time: {{props.row.start_time | localtime }}</p>
             <p>End Time: {{props.row.end_time | localtime }}</p>
             <p>Create Time: {{props.row.create_time | localtime}}</p>
-            <p>Creator: {{props.row.created_by.username}}</p>
+            <p>Creator: 管理员</p>
           </template>
         </el-table-column>
         <el-table-column
