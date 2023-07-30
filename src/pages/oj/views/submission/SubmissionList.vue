@@ -13,7 +13,7 @@
                 <Dropdown-menu slot="list">
                   <Dropdown-item name="">{{$t('m.All')}}</Dropdown-item>
                   <Dropdown-item v-for="status in Object.keys(JUDGE_STATUS)" :key="status" :name="status">
-                    {{$t('m.' + JUDGE_STATUS[status].name.replace(/ /g, "_"))}}
+                    {{ JUDGE_STATUS[status].name.replace(/ /g, "_") }}
                   </Dropdown-item>
                 </Dropdown-menu>
               </Dropdown>
@@ -105,7 +105,7 @@
                 props: {
                   color: JUDGE_STATUS[params.row.result].color
                 }
-              }, this.$i18n.t('m.' + JUDGE_STATUS[params.row.result].name.replace(/ /g, '_')))
+              }, JUDGE_STATUS[params.row.result].name.replace(/ /g, '_'))
             }
           },
           {
@@ -317,7 +317,7 @@
         }
       },
       status () {
-        return this.formFilter.result === '' ? this.$i18n.t('m.Status') : this.$i18n.t('m.' + JUDGE_STATUS[this.formFilter.result].name.replace(/ /g, '_'))
+        return this.formFilter.result === '' ? this.$i18n.t('m.Status') : JUDGE_STATUS[this.formFilter.result].name.replace(/ /g, '_')
       },
       rejudgeColumnVisible () {
         return !this.contestID && this.user.admin_type === USER_TYPE.SUPER_ADMIN

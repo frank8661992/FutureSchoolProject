@@ -2,7 +2,7 @@
   <Row type="flex" justify="space-around">
     <Col :span="20" id="status">
       <Alert :type="status.type" showIcon>
-        <span class="title">{{$t('m.' + status.statusName.replace(/ /g, "_"))}}</span>
+        <span class="title">{{status.statusName.replace(/ /g, "_")}}</span>
         <div slot="desc" class="content">
           <template v-if="isCE">
             <pre>{{submission.statistic_info.err_info}}</pre>
@@ -68,7 +68,7 @@
                 props: {
                   color: JUDGE_STATUS[params.row.result].color
                 }
-              }, this.$i18n.t('m.' + JUDGE_STATUS[params.row.result].name.replace(/ /g, '_')))
+              }, JUDGE_STATUS[params.row.result].name.replace(/ /g, '_'))
             }
           },
           {
