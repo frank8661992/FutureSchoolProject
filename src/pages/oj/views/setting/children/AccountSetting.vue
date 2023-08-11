@@ -22,25 +22,6 @@
           <Button type="primary" @click="changePassword">{{$t('m.Update_Password')}}</Button>
         </Form>
       </div>
-
-      <div class="right">
-        <p class="section-title">{{$t('m.ChangeEmail')}}</p>
-        <Form class="setting-content" ref="formEmail" :model="formEmail" :rules="ruleEmail">
-          <FormItem label="Current Password" prop="password">
-            <Input v-model="formEmail.password" type="password"/>
-          </FormItem>
-          <FormItem label="Old Email">
-            <Input v-model="formEmail.old_email" disabled/>
-          </FormItem>
-          <FormItem label="New Email" prop="new_email">
-            <Input v-model="formEmail.new_email"/>
-          </FormItem>
-          <FormItem v-if="visible.tfaRequired" label="Two Factor Auth" prop="tfa_code">
-            <Input v-model="formEmail.tfa_code"/>
-          </FormItem>
-          <Button type="primary" @click="changeEmail">{{$t('m.ChangeEmail')}}</Button>
-        </Form>
-      </div>
     </div>
   </div>
 </template>
@@ -168,15 +149,8 @@
     justify-content: flex-start;
     .left {
       flex: 1 0;
-      width: 250px;
+      width: 100%;
       padding-right: 5%;
-    }
-    > .middle {
-      flex: none;
-    }
-    .right {
-      flex: 1 0;
-      width: 250px;
     }
   }
 </style>

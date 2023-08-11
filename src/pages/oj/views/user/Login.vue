@@ -26,8 +26,7 @@
         {{$t('m.UserLogin')}}
       </Button>
       <a v-if="website.allow_register" @click.stop="handleBtnClick('register')">{{$t('m.No_Account')}}</a>
-      <!-- <span style="float: right">{{$t('m.Please_contact_the_admin_if_you_forget_password')}}</span> -->
-      <a @click.stop="goResetPassword" style="float: right">{{$t('m.Forget_Password')}}</a>
+      <span style="float: right">{{$t('m.Forget_Password')}}</span>
     </div>
   </div>
 </template>

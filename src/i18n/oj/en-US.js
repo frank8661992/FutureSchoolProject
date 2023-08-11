@@ -185,7 +185,7 @@ export const m = {
   LoginPassword: 'Password',
   TFA_Code: 'Code from your TFA app',
   No_Account: 'No account? Register now!',
-  Forget_Password: 'Forget Password',
+  Forget_Password: 'Forget Password，please concat the instructor',
   UserLogin: 'Login',
   Welcome_back: 'Welcome back to OJ',
   // OIRank.vue

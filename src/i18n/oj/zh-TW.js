@@ -185,7 +185,7 @@ export const m = {
   LoginPassword: '密碼',
   TFA_Code: '兩步驟驗證碼',
   No_Account: '沒有帳號，立即註冊!',
-  Forget_Password: '忘記密碼',
+  Forget_Password: '忘記密碼，请联系对应指导老师',
   UserLogin: '登入',
   Welcome_back: '歡迎回來',
   // OIRank.vue

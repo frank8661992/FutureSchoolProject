@@ -185,7 +185,7 @@ export const m = {
   LoginPassword: '密码',
   TFA_Code: 'TFA App 双因素认证码',
   No_Account: '还没账号，立即注册!',
-  Forget_Password: '忘记密码',
+  Forget_Password: '忘记密码，请联系对应指导老师',
   UserLogin: '登录',
   Welcome_back: '欢迎回来',
   // OIRank.vue
