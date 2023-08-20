@@ -72,12 +72,12 @@ const largePie = {
         normal: {color: getItemColor}
       },
       data: [
-        {value: 0, name: 'RE'},
+        {value: 0, name: '运行时出错'},
         {value: 0, name: '错误'},
-        {value: 0, name: 'TLE'},
+        {value: 0, name: '超时'},
         {value: 0, name: '正确'},
-        {value: 0, name: 'MLE'},
-        {value: 0, name: 'PAC'}
+        {value: 0, name: '超出内存限制'},
+        {value: 0, name: '部分正确'}
       ],
       label: {
         normal: {

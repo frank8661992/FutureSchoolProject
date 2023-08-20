@@ -8,16 +8,16 @@
           <div id="problem-content" class="markdown-body" v-katex>
             <div class="one-item">
               <p class="title">{{$t('m.Description')}}</p>
-              <p class="content" v-html=problem.description></p>
+              <p class="item-content" v-html=problem.description></p>
             </div>
             <div class="one-item">
               <p class="title">{{$t('m.Input')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.FromFile')}}: {{ problem.io_mode.input }})</span></p>
-              <p class="content" v-html=problem.input_description></p>
+              <p class="item-content" v-html=problem.input_description></p>
             </div>
 
             <div class="one-item">
               <p class="title">{{$t('m.Output')}} <span v-if="problem.io_mode.io_mode=='File IO'">({{$t('m.ToFile')}}: {{ problem.io_mode.output }})</span></p>
-              <p class="content" v-html=problem.output_description></p>
+              <p class="item-content" v-html=problem.output_description></p>
             </div>
 
             <div v-for="(sample, index) of problem.samples" :key="index">
@@ -539,16 +539,24 @@
         font-weight: 500;
         margin-bottom: 8px;
       }
+      .item-content {
+        margin: 0;
+        font-size: 14px;
+        font-family: HelveticaNeue;
+        color: #666666;
+        font-weight: 400;
+        margin: 0;
+        span{
+          word-break:normal;
+          width: 500px;
+          display:block;
+          white-space:pre-wrap;
+          word-wrap : break-word ;
+          overflow: hidden ;
+        }
+      }
     }
     
-    .content {
-      margin: 0;
-      font-size: 14px;
-      font-family: HelveticaNeue;
-      color: #666666;
-      font-weight: 400;
-      margin: 0;
-    }
     .sample {
       display: flex;
       align-items: stretch;
